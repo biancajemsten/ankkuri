@@ -1,30 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { hot } from "react-hot-loader/root";
-import { HashRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { HomePanel, AboutPanel, SlideDeck } from "./views";
+import { MainNav } from "./components";
 
 class App extends React.Component {
   render() {
     return (
       <Router>
         <div className="app">
-          <nav>
-            <ul>
-              <li>
-                <Link to={"/"} className="navLink">
-                  Home
-                </Link>
-                <Link to={"/about"} className="navLink">
-                  About
-                </Link>
-                <Link to={"/slides"} className="navLink">
-                  Slides
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <MainNav />
           <Switch>
             <Route exact path="/" component={HomePanel} />
             <Route exact path="/about" component={AboutPanel} />
