@@ -1,5 +1,14 @@
-import { Deck } from "spectacle";
+import React from "react";
+import { Deck, Slide } from "spectacle";
 
-<Deck>
-  
-</Deck>;
+const SlideDeck = () => (
+  <div>
+    <Deck>
+      <Slide>
+        <h1>test slide</h1>
+      </Slide>
+    </Deck>
+  </div>
+);
+
+export default SlideDeck;
