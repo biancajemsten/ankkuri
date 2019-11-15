@@ -243,7 +243,7 @@ const ErrorHandler = {
 /* CONSTANTS */
 
 const skillBuilder = Alexa.SkillBuilders.custom();
-const SKILL_NAME = "Decision Tree";
+const SKILL_NAME = "Ankkuri Morning Routine";
 const FALLBACK_MESSAGE = `The ${SKILL_NAME} skill can\'t help you with that.  It can recommend the best job for you. Do you want to start your career or be a couch potato?`;
 const FALLBACK_REPROMPT = "What can I help you with?";
 
