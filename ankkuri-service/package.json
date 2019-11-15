@@ -1,0 +1,11 @@
+{
+  "name": "ankkuri-morning-routine",
+  "version": "1.0.0",
+  "description": "Ankkuri morning routine alexa voice skill.",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ask-sdk-core": "^2.7.0",
+    "ask-sdk-model": "^1.23.1"
+  }
+}
