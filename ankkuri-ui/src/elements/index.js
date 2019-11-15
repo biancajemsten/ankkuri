@@ -1,1 +1,1 @@
-export { default as PlainText } from "./plain-text/PlainText";
+export { default as PlainText } from "./PlainText/PlainText";
