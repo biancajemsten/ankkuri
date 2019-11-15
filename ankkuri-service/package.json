@@ -1,7 +1,7 @@
 {
-  "name": "ankurri-morning-routine",
+  "name": "ankkuri-morning-routine",
   "version": "1.0.0",
-  "description": "Ankurri morning routine alexa voice skill.",
+  "description": "Ankkuri morning routine alexa voice skill.",
   "author": "",
   "license": "MIT",
   "dependencies": {
