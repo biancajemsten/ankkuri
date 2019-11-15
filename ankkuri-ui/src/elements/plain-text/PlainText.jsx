@@ -1,3 +1,5 @@
 import React from "react";
 
-export default ({ text }) => <div>{text}</div>;
+import { PlainTextWrapper } from "./PlainText.style";
+
+export default ({ text }) => <PlainTextWrapper>{text}</PlainTextWrapper>;
