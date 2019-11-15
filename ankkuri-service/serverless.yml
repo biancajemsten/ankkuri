@@ -1,0 +1,16 @@
+service: ankkuri
+
+frameworkVersion: ">=1.4.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+
+functions:
+  morningRoutine:
+    handler: index.handler
+    events:
+      - alexaSkill:
+        appId: amzn1.ask.skill.c5a0e492-7e2f-4539-be94-c68c7f65550c
+        enabled: true
