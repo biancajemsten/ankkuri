@@ -6,10 +6,10 @@ import { MenuItemWrapper } from "./MenuItem.style";
 export default ({ linkName, route }) => (
   <MenuItemWrapper>
     <NavLink
+      exact
       to={`${route}`}
       className="menuItem-link"
       activeClassName="active"
-      onlyActiveOnIndex
     >
       {linkName}
     </NavLink>

@@ -7,7 +7,7 @@ import { MenuItem } from "../../elements";
 export default () => (
   <MainNavWrapper>
     <ul className="navList">
-      <MenuItem linkName="Home" route="/home" />
+      <MenuItem linkName="Home" route="/" />
       <MenuItem linkName="About" route="/about" />
       <MenuItem linkName="Slides" route="/slides" />
     </ul>

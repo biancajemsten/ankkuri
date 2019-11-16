@@ -13,7 +13,7 @@ class App extends React.Component {
         <AppWrapper>
           <HeaderPanel />
           <Switch>
-            <Route exact path="/home" component={HomePanel} />
+            <Route exact path="/" component={HomePanel} />
             <Route exact path="/about" component={AboutPanel} />
             <Route exact path="/slides" component={SlideDeck} />
           </Switch>
