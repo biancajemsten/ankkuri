@@ -7,7 +7,7 @@ const CTAWrapper = styled.div`
 
   &.select {
     display: inline-block;
-    margin: 20px 50px;
+    margin: 20px 64px;
   }
 
   .button {
