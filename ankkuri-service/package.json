@@ -6,6 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "ask-sdk-core": "^2.7.0",
-    "ask-sdk-model": "^1.23.1"
+    "ask-sdk-model": "^1.23.1",
+    "aws-sdk": "^2.573.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^5.12.0"
   }
 }
