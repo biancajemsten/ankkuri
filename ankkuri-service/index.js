@@ -23,20 +23,32 @@
 /* eslint-disable  no-console */
 
 const Alexa = require("ask-sdk-core");
-
+const { getUser } = require("./helpers/getUserInfo");
 /* INTENT HANDLERS */
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak(
-        "Good morning Alys! It's time to start your day. Are you out of bed yet?"
-      )
-      .reprompt("Let me know if you're out of bed")
-      .getResponse();
+  async handle(handlerInput) {
+    const accessToken =
+      handlerInput.requestEnvelope.context.System.user.accessToken;
+    if (accessToken) {
+      const user = await getUser(accessToken);
+      return handlerInput.responseBuilder
+        .speak(
+          `Good morning ${user.name}! It's time to start your day. Are you out of bed yet?`
+        )
+        .reprompt("Let me know if you're out of bed")
+        .getResponse();
+    } else {
+      return handlerInput.responseBuilder
+        .speak(
+          `Hello, please sign into Akkuri on your device to activate your customised morning routine.`
+        )
+        .reprompt("Let me know if you're out of bed")
+        .getResponse();
+    }
   }
 };
 
@@ -64,15 +76,12 @@ const NotOutOfBed = {
     const request = handlerInput.requestEnvelope.request;
 
     return (
-      request.type === "IntentRequest" &&
-      request.intent.name === "NotOutOfBed"
+      request.type === "IntentRequest" && request.intent.name === "NotOutOfBed"
     );
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak(
-        "You need to get up soon. Are you scrolling?"
-      )
+      .speak("You need to get up soon. Are you scrolling?")
       .reprompt("Come on, are you scrolling?")
       .getResponse();
   }
@@ -83,8 +92,7 @@ const YesScrolling = {
     const request = handlerInput.requestEnvelope.request;
 
     return (
-      request.type === "IntentRequest" &&
-      request.intent.name === "YesScrolling"
+      request.type === "IntentRequest" && request.intent.name === "YesScrolling"
     );
   },
   handle(handlerInput) {
@@ -101,8 +109,7 @@ const NoStretching = {
     const request = handlerInput.requestEnvelope.request;
 
     return (
-      request.type === "IntentRequest" &&
-      request.intent.name === "NoStretching"
+      request.type === "IntentRequest" && request.intent.name === "NoStretching"
     );
   },
   handle(handlerInput) {
@@ -112,7 +119,7 @@ const NoStretching = {
       )
       .getResponse();
   }
-}
+};
 
 const InProgressRecommendationIntent = {
   canHandle(handlerInput) {
@@ -152,7 +159,7 @@ const InProgressRecommendationIntent = {
               (element, index) => {
                 prompt += ` ${index === size - 1 ? " or" : " "} ${
                   element.value.name
-                  }`;
+                }`;
               }
             );
 
@@ -207,9 +214,9 @@ const CompletedRecommendationIntent = {
 
     const speechOutput =
       `So you want to be ${slotValues.salaryImportance.resolved}. You are an ${
-      slotValues.personality.resolved
+        slotValues.personality.resolved
       }, you like ${slotValues.preferredSpecies.resolved}  and you ${
-      slotValues.bloodTolerance.resolved === "high" ? "can" : "can't"
+        slotValues.bloodTolerance.resolved === "high" ? "can" : "can't"
       } tolerate blood ` + `. You should consider being a ${occupation.name}`;
 
     return handlerInput.responseBuilder.speak(speechOutput).getResponse();
@@ -359,7 +366,7 @@ function getSlotValues(filledSlots) {
       filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
     ) {
       switch (
-      filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
+        filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
       ) {
         case "ER_SUCCESS_MATCH":
           slotValues[name] = {
