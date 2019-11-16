@@ -9,6 +9,7 @@ export default () => (
       <MenuItem linkName="Home" route="/" />
       <MenuItem linkName="The Science" route="/the-science" />
       <MenuItem linkName="Test" route="/test" />
+      <MenuItem linkName="Profile" route="/profile" />
     </ul>
   </MainNavWrapper>
 );

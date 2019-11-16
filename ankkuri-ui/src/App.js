@@ -10,11 +10,12 @@ import {
   HeaderPanel,
   SlideDeck,
   CreateRoutinePanel,
-  TestPanel
+  DataPrivacy
 } from "./views";
 // Style
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/globalStyle";
+import ProfilePanel from "./views/ProfilePanel/ProfilePanel";
 
 import styled from "styled-components";
 
@@ -39,7 +40,8 @@ class App extends React.Component {
                 component={CreateRoutinePanel}
               />
               <Route exact path="/slides" component={SlideDeck} />
-              <Route exact path="/test" component={TestPanel} />
+              <Route exact path="/profile" component={ProfilePanel} />
+              <Route exact path="/data-privacy" component={DataPrivacy} />
             </Switch>
           </MainWrapper>
         </ThemeProvider>
