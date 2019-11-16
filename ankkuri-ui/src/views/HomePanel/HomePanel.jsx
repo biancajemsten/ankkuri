@@ -1,3 +1,9 @@
 import React from "react";
 
-export default () => <div>Home Panel</div>;
+import { Heading } from "../../elements";
+
+export default () => (
+  <div>
+    <Heading headingLevel="h2">Wake up with us</Heading>
+  </div>
+);

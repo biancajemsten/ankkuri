@@ -19,13 +19,12 @@ class App extends React.Component {
           <GlobalStyle />
           <HeaderPanel />
           <main>
-            <Heading headingLevel="h2">Wake up with us</Heading>
+            <Switch>
+              <Route exact path="/" component={HomePanel} />
+              <Route exact path="/about" component={AboutPanel} />
+              <Route exact path="/slides" component={SlideDeck} />
+            </Switch>
           </main>
-          <Switch>
-            <Route exact path="/" component={HomePanel} />
-            <Route exact path="/about" component={AboutPanel} />
-            <Route exact path="/slides" component={SlideDeck} />
-          </Switch>
         </ThemeProvider>
       </Router>
     );
