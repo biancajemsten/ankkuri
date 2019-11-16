@@ -14,3 +14,19 @@ functions:
       - alexaSkill:
         appId: amzn1.ask.skill.c5a0e492-7e2f-4539-be94-c68c7f65550c
         enabled: true
+
+resources:
+  Resources:
+    AnkkuriUsers:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: ankkuri-users
+        AttributeDefinitions:
+          - AttributeName: UserId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: UserId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

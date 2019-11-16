@@ -73,6 +73,7 @@ const NotOutOfBed = {
       .speak(
         "You need to get up soon. Are you scrolling?"
       )
+      .reprompt("Come on, are you scrolling?")
       .getResponse();
   }
 };
@@ -89,7 +90,25 @@ const YesScrolling = {
   handle(handlerInput) {
     return handlerInput.responseBuilder
       .speak(
-        "You need to get up soon. Are you scrolling?"
+        "Ok, let's put the phone down and start with something easy. How about 5 minutes of stretching to start the day?"
+      )
+      .getResponse();
+  }
+};
+
+const NoStretching = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "NoStretching"
+    );
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(
+        "Sure no worries. Go get yourself some water, it's important to stay hydrated! Let me know when you've got it"
       )
       .getResponse();
   }
@@ -378,6 +397,7 @@ exports.handler = skillBuilder
     LaunchRequestHandler,
     NotOutOfBed,
     YesScrolling,
+    NoStretching,
     InProgressRecommendationIntent,
     CompletedRecommendationIntent,
     HelpHandler,
