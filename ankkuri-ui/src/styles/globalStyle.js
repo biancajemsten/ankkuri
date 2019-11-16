@@ -46,6 +46,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${rem(text.sizes.h6)};
   }
 
+  a {
+    text-decoration: none;
+    color: ${colors.primary};
+  }
+
 `;
 
 export default GlobalStyle;
