@@ -3,16 +3,18 @@ import rem from "../../styles/utils/rem";
 
 const HeaderWrapper = styled.header`
   width: 100%;
-  padding: ${({theme}) => `${rem(theme.spacing.s3)} ${rem(theme.spacing.l1)}`};
+  padding: ${({theme}) => `${rem(theme.spacing.s2)} ${rem(theme.spacing.l1)}`};
+  position: fixed;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  
+  background-color: rgba(255, 255, 255, 0.8);
 
   .logo {
-    max-width: 140px;
-    padding: 13px 0;
+    height: 50px;
     object-fit: contain;
   }
 `;
