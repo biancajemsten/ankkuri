@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MainNavWrapper } from "./MainNav.style";
-import { MenuItem } from '../../elements/atoms';
+import { MenuItem } from "../../elements/atoms";
 
 export default () => (
   <MainNavWrapper>

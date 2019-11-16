@@ -3,8 +3,10 @@ import rem from "../../styles/utils/rem";
 
 const HeaderWrapper = styled.header`
   width: 100%;
-  padding: ${({theme}) => `${rem(theme.spacing.s2)} ${rem(theme.spacing.l1)}`};
+  padding: ${({ theme }) =>
+    `${rem(theme.spacing.s2)} ${rem(theme.spacing.l1)}`};
   position: fixed;
+  top: 0;
 
   z-index: 10;
 
@@ -12,7 +14,7 @@ const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  
+
   background-color: rgba(255, 255, 255, 0.8);
 
   .logo {
