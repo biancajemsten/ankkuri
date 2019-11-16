@@ -10,8 +10,11 @@ const ArticleBannerWrapper = styled.article`
     font-size: ${rem(theme.text.sizes.h5)};
   }
 
-  .left-container {
-    display: inline-block;
+  img {
+    width: 100%;
+    right: -25px;
+    position: relative;
+    display: block;
   }
 `;
 

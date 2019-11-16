@@ -5,11 +5,11 @@ import Waves from "../../../assets/waves.jpeg";
 import Wave from "../../../assets/wave.svg";
 
 // Utils
-import rem from '../../../styles/utils/rem';
+import rem from "../../../styles/utils/rem";
 
 const Wrapper = styled.div`
   height: 100vh;
-  padding: ${({theme}) => `${rem(theme.spacing.l1)}`};
+  padding: ${({ theme }) => `${rem(theme.spacing.l1)}`};
   box-sizing: border-box;
   
   position: relative;
@@ -25,14 +25,16 @@ const Wrapper = styled.div`
     left: 0;
     right: 0;
     
-    /* background-image: url(${Waves}); */
     background-size: cover;
     background-position: 0 80%;
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
 
     z-index: -1;
     transform: rotate(180deg);
+  }
+
+  h1 {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
   }
 `;
 
