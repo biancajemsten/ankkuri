@@ -10,13 +10,14 @@ export default () => (
   <ArticleBannerWrapper>
     <Heading headingLevel="h2">The Science</Heading>
     <Row>
-      <Column lg={6}>
+      <Column md={6}>
         <div className="left-container">
           <blockquote>
             <span className="quoteMarks">"</span>Having a morning routine can
-            increase your energy, productivity and positivity. It also generates
-            momentum, building up to the brain’s peak time for cognitive work
-            <span className="quoteMarks">"</span> - Luna Greenstein, National
+            increase your energy, productivity and positivity.
+            <span className="quoteMarks">"</span>
+            <br />
+            - Luna Greenstein, National
             Alliance on Mental Illness
           </blockquote>
           <PlainText>
