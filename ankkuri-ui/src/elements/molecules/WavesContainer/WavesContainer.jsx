@@ -5,10 +5,11 @@ import React from "react";
 
 // Styles
 import { Wrapper } from './WavesContainer.style';
+import { ArticleBanner } from '..';
 
 const WavesContainer = () => (
   <Wrapper>
-   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam velit voluptatum laborum quo illo autem, hic minima praesentium accusamus tenetur a? Cumque rerum consectetur similique? Commodi labore saepe esse debitis!</p>
+    <ArticleBanner />
   </Wrapper>
 );
 

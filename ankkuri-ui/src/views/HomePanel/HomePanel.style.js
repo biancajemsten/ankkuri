@@ -44,7 +44,7 @@ const HomePanelWrapper = styled.div`
 
     padding: 30vh 0;
 
-    * {
+    > * {
       background-color: ${({ theme }) => theme.colors.background};
       padding: 10% ${({ theme }) => rem(theme.spacing.l1)};
     }

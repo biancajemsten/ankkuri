@@ -23,22 +23,123 @@
 /* eslint-disable  no-console */
 
 const Alexa = require("ask-sdk-core");
-
+const { getUser } = require("./helpers/getUserInfo");
 /* INTENT HANDLERS */
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
+  async handle(handlerInput) {
+    const accessToken = 'eyJraWQiOiJURjdcL0VqWm9sTEJFSGV0T2o2TnBSSGx2OXJTMFo3dWhcL2REbnNlZUpWczQ9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6InBob25lIG9wZW5pZCBlbWFpbCIsImF1dGhfdGltZSI6MTU3Mzg4NjkwNiwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfNmRzM2hvZlp6IiwiZXhwIjoxNTczOTAyOTgwLCJpYXQiOjE1NzM4OTkzODAsInZlcnNpb24iOjIsImp0aSI6IjU2ODY4OGQ0LWI5OGUtNGJkMS1hMjU2LTEzNzg2YzIyMjI0ZiIsImNsaWVudF9pZCI6IjZrdGhldWZpbDlidnRnM3NkNjBqbjNybWo5IiwidXNlcm5hbWUiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgifQ.kfkAMwx6aKsqIm8CbfuwdS0cDre5WmBOB5C02tQxyj3USNGsEmE-7vKJzk1ffetRKLqfui-wqfzXnCl7hSA94Y6zA5nG9LiuT0YG3jTZYw67XYri9FI3M4RNkAcytA-dCM05n2YZKaB7a3WQGhmzzPfK9KjLDsmOXkTac4jRaF5EGws_wbSPxBZkFUXEKkecyHfMUnmBuh6u60BHExQ9ceD6o29CAbejE-Hp7D-rt8Tmcve0Y8I3edYPiKj5lsZ_pIiLp2xk0UYYmTFl3UMfvDkH1F3Qtsvv8N7zIY4f30ARqB-P_rG1MD6Q9A7HMQA1guXHZEj_Zx_ndxEedP2J4Q';
+    if (accessToken) {
+      const user = await getUser(accessToken);
+      return handlerInput.responseBuilder
+        .speak(
+          `Good morning ${user.name}! It's time to start your day. Are you out of bed yet?`
+        )
+        .reprompt("Let me know if you're out of bed")
+        .getResponse();
+    } else {
+      return handlerInput.responseBuilder
+        .speak(
+          `Hello, please sign-in to Akkuri on your device to activate your customised morning routine.`
+        )
+        .getResponse();
+    }
+  }
+};
+
+
+const YesNoIntentHandler = {
+  canHandle(handlerInput) {
+    const req = handlerInput.requestEnvelope.request;
+    return (
+      req.type === "IntentRequest" &&
+      req.intent.name === "AMAZON.YesIntent" || req.intent.name === "AMAZON.NoIntent"
+    );
+  },
   handle(handlerInput) {
+    const req = handlerInput.requestEnvelope.request;
+    let answer = `Great! Let's go for a shower`;
+    if (req.intent.name == "AMAZON.NoIntent") {
+      speechText = `Ok, are you scrolling in bed?`;
+    } else {
+      speechText = answer;
+    }
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    if (sessionAttributes.answered) {
+      speechText = 'Come on, put the phone down and go for a shower';
+
+    }
     return handlerInput.responseBuilder
       .speak(
-        "Good morning Alys! It's time to start your day. Are you out of bed yet?"
+        speechText
       )
-      .reprompt("Let me know if you're out of bed")
+      .reprompt('You need to get up soon. Are you scrolling?')
       .getResponse();
   }
 };
+
+
+// const NotOutOfBed = {
+//   canHandle(handlerInput) {
+//     const request = handlerInput.requestEnvelope.request;
+//     return (
+//       request.type === "IntentRequest" &&
+//       request.intent.name === "NotOutOfBed"
+//     );
+//   },
+
+//   handle(handlerInput) {
+//     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+//     if (sessionAttributes.position == 'launch') {
+//       return handlerInput.responseBuilder
+//         .speak(
+//           "You need to get up soon. Are you scrolling?"
+//         )
+//         .reprompt("Come on, are you scrolling?")
+//         .getResponse();
+//     }
+//   }
+
+// };
+
+// const YesScrolling = {
+//   canHandle(handlerInput) {
+//     const request = handlerInput.requestEnvelope.request;
+
+//     return (
+//       request.type === "IntentRequest" &&
+//       request.intent.name === "YesScrolling"
+//     );
+//   },
+//   handle(handlerInput) {
+//     return handlerInput.responseBuilder
+//       .speak(
+//         "Ok, let's put the phone down and start with something easy. How about 5 minutes of stretching to start the day?"
+//       )
+//       .getResponse();
+//   }
+// };
+
+// const NoStretching = {
+//   canHandle(handlerInput) {
+//     const request = handlerInput.requestEnvelope.request;
+
+//     return (
+//       request.type === "IntentRequest" &&
+//       request.intent.name === "NoStretching"
+//     );
+//   },
+//   handle(handlerInput) {
+//     return handlerInput.responseBuilder
+//       .speak(
+//         "Sure no worries. Go get yourself some water, it's important to stay hydrated! Let me know when you've got it"
+//       )
+//       .getResponse();
+//   }
+// }
 
 const FallbackHandler = {
   // 2018-Nov-21: AMAZON.FallackIntent is currently available in en-* and de-DE locales.
@@ -58,61 +159,6 @@ const FallbackHandler = {
       .getResponse();
   }
 };
-
-const NotOutOfBed = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-
-    return (
-      request.type === "IntentRequest" &&
-      request.intent.name === "NotOutOfBed"
-    );
-  },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak(
-        "You need to get up soon. Are you scrolling?"
-      )
-      .reprompt("Come on, are you scrolling?")
-      .getResponse();
-  }
-};
-
-const YesScrolling = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-
-    return (
-      request.type === "IntentRequest" &&
-      request.intent.name === "YesScrolling"
-    );
-  },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak(
-        "Ok, let's put the phone down and start with something easy. How about 5 minutes of stretching to start the day?"
-      )
-      .getResponse();
-  }
-};
-
-const NoStretching = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-
-    return (
-      request.type === "IntentRequest" &&
-      request.intent.name === "NoStretching"
-    );
-  },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak(
-        "Sure no worries. Go get yourself some water, it's important to stay hydrated! Let me know when you've got it"
-      )
-      .getResponse();
-  }
-}
 
 const InProgressRecommendationIntent = {
   canHandle(handlerInput) {
@@ -395,9 +441,7 @@ function getSlotValues(filledSlots) {
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    NotOutOfBed,
-    YesScrolling,
-    NoStretching,
+    YesNoIntentHandler,
     InProgressRecommendationIntent,
     CompletedRecommendationIntent,
     HelpHandler,
