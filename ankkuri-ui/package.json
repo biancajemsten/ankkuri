@@ -4,7 +4,9 @@
   "description": "",
   "main": "App.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --mode development --open"
+    "start": "webpack-dev-server --hot --mode development --open",
+    "build": "webpack -p --mode production",
+    "clean": "rm dist/bundle.js"
   },
   "author": "",
   "license": "ISC",
