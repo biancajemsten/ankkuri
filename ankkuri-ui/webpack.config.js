@@ -14,7 +14,7 @@ const config = {
         use: "babel-loader",
         exclude: /node_modules/
       },
-      { test: /\.(png|jpg)$/, use: "file-loader" }
+      { test: /\.(png|jpg|jpeg|svg)$/, use: "file-loader" }
     ]
   },
   resolve: {

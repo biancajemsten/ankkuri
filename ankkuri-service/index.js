@@ -37,10 +37,15 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
   async handle(handlerInput) {
+    // const accessToken =
+    //   handlerInput.requestEnvelope.context.System.user.accessToken;
     const accessToken = 'eyJraWQiOiJURjdcL0VqWm9sTEJFSGV0T2o2TnBSSGx2OXJTMFo3dWhcL2REbnNlZUpWczQ9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6InBob25lIG9wZW5pZCBlbWFpbCIsImF1dGhfdGltZSI6MTU3Mzg4NjkwNiwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfNmRzM2hvZlp6IiwiZXhwIjoxNTczOTAyOTgwLCJpYXQiOjE1NzM4OTkzODAsInZlcnNpb24iOjIsImp0aSI6IjU2ODY4OGQ0LWI5OGUtNGJkMS1hMjU2LTEzNzg2YzIyMjI0ZiIsImNsaWVudF9pZCI6IjZrdGhldWZpbDlidnRnM3NkNjBqbjNybWo5IiwidXNlcm5hbWUiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgifQ.kfkAMwx6aKsqIm8CbfuwdS0cDre5WmBOB5C02tQxyj3USNGsEmE-7vKJzk1ffetRKLqfui-wqfzXnCl7hSA94Y6zA5nG9LiuT0YG3jTZYw67XYri9FI3M4RNkAcytA-dCM05n2YZKaB7a3WQGhmzzPfK9KjLDsmOXkTac4jRaF5EGws_wbSPxBZkFUXEKkecyHfMUnmBuh6u60BHExQ9ceD6o29CAbejE-Hp7D-rt8Tmcve0Y8I3edYPiKj5lsZ_pIiLp2xk0UYYmTFl3UMfvDkH1F3Qtsvv8N7zIY4f30ARqB-P_rG1MD6Q9A7HMQA1guXHZEj_Zx_ndxEedP2J4Q';
     let getPersistedAttributes = await handlerInput.attributesManager.getPersistentAttributes();
     if (accessToken && Object.keys(getPersistedAttributes).length == 0) {
       const user = await getUser(accessToken);
+      const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+      sessionAttributes.user = user;
+      handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
       speechText = `Good morning ${user.name}! It's time to start your day. Are you up yet or still in bed?`
 
     } else if (accessToken && getPersistedAttributes.action == 'goStretch') {
