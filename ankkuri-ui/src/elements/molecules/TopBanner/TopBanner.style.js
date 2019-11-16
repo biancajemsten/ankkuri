@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // Components
 import Waves from "../../../assets/waves.jpeg";
+import Wave from "../../../assets/wave.svg";
 
 // Utils
 import rem from '../../../styles/utils/rem';
@@ -24,11 +25,11 @@ const Wrapper = styled.div`
     left: 0;
     right: 0;
     
-    background-image: url(${Waves});
+    /* background-image: url(${Waves}); */
     background-size: cover;
-    background-position: 0 -65vh;
+    background-position: 0 80%;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 
     z-index: -1;
     transform: rotate(180deg);
