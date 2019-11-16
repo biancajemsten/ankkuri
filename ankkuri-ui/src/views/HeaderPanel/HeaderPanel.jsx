@@ -8,7 +8,7 @@ import Logo from "../../assets/logo-small.png";
 
 export default () => (
   <HeaderWrapper>
-    <img src={Logo} />
+    <img className="logo" src={Logo} alt="ankkuri" />
     <MainNav />
   </HeaderWrapper>
 );
