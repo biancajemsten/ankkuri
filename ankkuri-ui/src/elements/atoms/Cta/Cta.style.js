@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import colors from "../../styles/colors";
+import colors from "../../../styles/colors";
 
 const CTAWrapper = styled.div`
   margin: 50px 0;
