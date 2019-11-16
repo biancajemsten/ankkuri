@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import {
-  getColumnSizeByMediaQuery,
-  getColumnSize,
   columnSize
 } from "../../../styles/utils/column";
 

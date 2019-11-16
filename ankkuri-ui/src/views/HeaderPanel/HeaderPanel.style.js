@@ -6,6 +6,8 @@ const HeaderWrapper = styled.header`
   padding: ${({theme}) => `${rem(theme.spacing.s2)} ${rem(theme.spacing.l1)}`};
   position: fixed;
 
+  z-index: 10;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
