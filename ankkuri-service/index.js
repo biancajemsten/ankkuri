@@ -33,9 +33,9 @@ const LaunchRequestHandler = {
   handle(handlerInput) {
     return handlerInput.responseBuilder
       .speak(
-        "Welcome to Decision Tree. I will recommend the best job for you. Do you want to start your career or be a couch potato?"
+        "Good morning Alys! It's time to start your day. Are you out of bed yet?"
       )
-      .reprompt("Do you want a career or to be a couch potato?")
+      .reprompt("Let me know if you're out of bed")
       .getResponse();
   }
 };
@@ -59,23 +59,60 @@ const FallbackHandler = {
   }
 };
 
-const CouchPotatoIntent = {
+const NotOutOfBed = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
 
     return (
       request.type === "IntentRequest" &&
-      request.intent.name === "CouchPotatoIntent"
+      request.intent.name === "NotOutOfBed"
     );
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
       .speak(
-        "You don't want to start your career? Have fun wasting away on the couch."
+        "You need to get up soon. Are you scrolling?"
+      )
+      .reprompt("Come on, are you scrolling?")
+      .getResponse();
+  }
+};
+
+const YesScrolling = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "YesScrolling"
+    );
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(
+        "Ok, let's put the phone down and start with something easy. How about 5 minutes of stretching to start the day?"
       )
       .getResponse();
   }
 };
+
+const NoStretching = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "NoStretching"
+    );
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(
+        "Sure no worries. Go get yourself some water, it's important to stay hydrated! Let me know when you've got it"
+      )
+      .getResponse();
+  }
+}
 
 const InProgressRecommendationIntent = {
   canHandle(handlerInput) {
@@ -115,7 +152,7 @@ const InProgressRecommendationIntent = {
               (element, index) => {
                 prompt += ` ${index === size - 1 ? " or" : " "} ${
                   element.value.name
-                }`;
+                  }`;
               }
             );
 
@@ -170,9 +207,9 @@ const CompletedRecommendationIntent = {
 
     const speechOutput =
       `So you want to be ${slotValues.salaryImportance.resolved}. You are an ${
-        slotValues.personality.resolved
+      slotValues.personality.resolved
       }, you like ${slotValues.preferredSpecies.resolved}  and you ${
-        slotValues.bloodTolerance.resolved === "high" ? "can" : "can't"
+      slotValues.bloodTolerance.resolved === "high" ? "can" : "can't"
       } tolerate blood ` + `. You should consider being a ${occupation.name}`;
 
     return handlerInput.responseBuilder.speak(speechOutput).getResponse();
@@ -322,7 +359,7 @@ function getSlotValues(filledSlots) {
       filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
     ) {
       switch (
-        filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
+      filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
       ) {
         case "ER_SUCCESS_MATCH":
           slotValues[name] = {
@@ -358,7 +395,9 @@ function getSlotValues(filledSlots) {
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    CouchPotatoIntent,
+    NotOutOfBed,
+    YesScrolling,
+    NoStretching,
     InProgressRecommendationIntent,
     CompletedRecommendationIntent,
     HelpHandler,
