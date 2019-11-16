@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import text from "./text";
 import colors from "./colors";
+import rem from "./utils/rem";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -9,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
     font-weight: ${text.weight.medium};
 
     background-color: ${colors.background};
+
+    padding: 0 ${rem(100)};
   }
 
   h1, h2, h3, h4, h5, h5, .h1, .h2, .h3, .h4, .h5, .h6 {
