@@ -18,36 +18,25 @@ const HomePanelWrapper = styled.div`
   top: 0;
   z-index: -1;
   padding-top: 175px;
+
   &:before {
     content: "";
     position: absolute;
+    top: 0;
     left: 0;
     right: 0;
     width: 100%;
     height: 200%;
     background-image: url(${Waves});
-    background-size: contain;
+    background-size: cover;
     background-position: 0 90%;
     background-repeat: no-repeat;
-    transform: rotate(180deg);
+    transform: rotate(180deg) scaleX(-1);
   }
 
   ${WaveContainer} {
-    background-image: url(${Wave});
-    background-position: top;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100vh;
-
     transform-origin: 0 0;
     transform: translateZ(-0.5px) scale(1.5);
-
-    padding: 30vh 0;
-
-    > * {
-      background-color: ${({ theme }) => theme.colors.background};
-      padding: 10% ${({ theme }) => rem(theme.spacing.l1)};
-    }
 
     p {
       height: 100%;

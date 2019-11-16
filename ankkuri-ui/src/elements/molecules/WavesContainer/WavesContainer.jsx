@@ -7,8 +7,8 @@ import React from "react";
 import { Wrapper } from './WavesContainer.style';
 import { ArticleBanner } from '..';
 
-const WavesContainer = () => (
-  <Wrapper>
+const WavesContainer = ({waveColor}) => (
+  <Wrapper waveColor={waveColor}>
     <ArticleBanner />
   </Wrapper>
 );
