@@ -9,7 +9,8 @@ import {
   AboutPanel,
   HeaderPanel,
   SlideDeck,
-  CreateRoutinePanel
+  CreateRoutinePanel,
+  TestPanel
 } from "./views";
 // Style
 import theme from "./styles/theme";
@@ -32,6 +33,7 @@ class App extends React.Component {
                 component={CreateRoutinePanel}
               />
               <Route exact path="/slides" component={SlideDeck} />
+              <Route exact path="/test" component={TestPanel} />
             </Switch>
           </main>
         </ThemeProvider>
