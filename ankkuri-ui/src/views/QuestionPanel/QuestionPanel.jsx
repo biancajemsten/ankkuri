@@ -6,27 +6,34 @@ import { Cta } from "../../elements/atoms";
 export default ({ question }) => {
   return (
     <QuestionPanelWrapper>
-      <div className="bottomhalf">
-        {question === "end-of-questions" ? (
-          <div>Heres your morning routine:</div>
-        ) : (
-          <>
-            <Heading headingLevel="h2">{question.sectionHeading}</Heading>
-            <PlainText>{question.question}</PlainText>
-            {question.answerType === "string" ? (
-              <input className="questionPanel-input" type="text" name="fname" />
-            ) : (
-              <div className="button-container">
-                {question.answerOptions.map(el => (
-                  <Cta ctaType="button" className="select">
-                    {el}
-                  </Cta>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-      </div>
+      {question === "end-of-questions" ? (
+        <div>
+          <Heading headingLevel="h5">
+            Go to your profile to see your personal morning routine.
+          </Heading>
+        </div>
+      ) : (
+        <>
+          <Heading headingLevel="h2">{question.sectionHeading}</Heading>
+          <PlainText>{question.question}</PlainText>
+
+          {question.answerType === "string" ? (
+            <input className="questionPanel-input" type="text" name="fname" />
+          ) : (
+            <div className="button-container">
+              {question.answerOptions.map((el, index) => (
+                <Cta
+                  ctaType="button"
+                  key={index + Math.random()}
+                  className={`select`}
+                >
+                  {el}
+                </Cta>
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </QuestionPanelWrapper>
   );
 };

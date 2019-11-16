@@ -3,7 +3,7 @@ import styled from "styled-components";
 import colors from "../../../styles/colors";
 
 const CTAWrapper = styled.div`
-  margin: 50px 0;
+  margin: 50px 0 0;
 
   &.select {
     display: inline-block;
@@ -19,15 +19,22 @@ const CTAWrapper = styled.div`
     text-transform: lowercase;
 
     &.select {
-      background: ${colors.primaryTint};
+      background: ${colors.primary};
+      color: ${colors.white};
+      cursor: pointer;
+
       &:hover,
       &:focus {
-        background: ${colors.accentTint};
+        background: ${colors.primary};
+      }
+
+      &.isActive {
+        background: ${colors.primaryTint};
       }
     }
 
     &:hover,
-    &:focus {
+    &:focus &.not() {
       background: ${colors.accentTint};
     }
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { CTAWrapper } from "./Cta.style";
@@ -6,6 +6,7 @@ import { CTAWrapper } from "./Cta.style";
 export default props => {
   //pass ctaType as either 'button' or 'a'
   const CTAElement = props.ctaType;
+  const [isActive, setActive] = useState(false);
 
   return (
     <CTAWrapper className={props.className}>
@@ -15,8 +16,14 @@ export default props => {
         </Link>
       ) : (
         <CTAElement
-          className={`button${props.className ? " " + props.className : ""}`}
-          onClick={props.handleClick}
+          className={`button${props.className ? " " + props.className : ""}${
+            isActive ? " isActive" : ""
+          }`}
+          onClick={
+            props.className === "select"
+              ? () => setActive(!isActive)
+              : props.handleClick
+          }
         >
           {props.children}
         </CTAElement>

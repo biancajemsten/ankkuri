@@ -9,7 +9,9 @@ const QuestionPanelWrapper = styled.div`
     background: none;
     border-width: 0 0 2px;
     border-color: ${color.white};
+    color: ${color.white};
     outline: 0;
+    text-align: center;
   }
 
   .button-container {
