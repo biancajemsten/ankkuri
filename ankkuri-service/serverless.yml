@@ -25,8 +25,10 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+        - dynamodb:CreateTable
       Resource:
         - { "Fn::GetAtt": ["AnkkuriUsers", "Arn"] }
+        - arn:aws:dynamodb:eu-west-1:121752818199:table/MorningRoutineStates
   environment:
     ANKKURI_USER_TABLE: ${self:custom.userTable}
     USER_POOL_ID: ${ssm:AnkkuriUserPoolId~true}
@@ -46,7 +48,6 @@ functions:
           method: get
           cors: true
           private: true
-
 resources:
   Resources:
     AnkkuriUsers:
