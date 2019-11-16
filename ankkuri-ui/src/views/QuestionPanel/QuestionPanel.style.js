@@ -1,5 +1,21 @@
 import styled from "styled-components";
 
-const QuestionPanelWrapper = styled.div``;
+import color from "../../styles/colors";
+
+const QuestionPanelWrapper = styled.div`
+  text-align: center;
+
+  .questionPanel-input {
+    background: none;
+    border-width: 0 0 2px;
+    border-color: ${color.white};
+    outline: 0;
+  }
+
+  .button-container {
+    max-width: 58%;
+    margin: 0 auto;
+  }
+`;
 
 export { QuestionPanelWrapper };

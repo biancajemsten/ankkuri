@@ -8,13 +8,18 @@ export default props => {
   const CTAElement = props.ctaType;
 
   return (
-    <CTAWrapper>
+    <CTAWrapper className={props.className}>
       {props.ctaType === "Link" ? (
         <Link to={props.href ? props.href : ""} className="button">
           {props.children}
         </Link>
       ) : (
-        <CTAElement>{props.children}</CTAElement>
+        <CTAElement
+          className={`button${props.className ? " " + props.className : ""}`}
+          onClick={props.handleClick}
+        >
+          {props.children}
+        </CTAElement>
       )}
     </CTAWrapper>
   );
