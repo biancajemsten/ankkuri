@@ -1,8 +1,14 @@
+// packages
 import React from "react";
+
+// Components
 import { Heading, PlainText, Cta } from '../../atoms'
 
+// Styles
+import { Wrapper } from './TopBanner.style';
+
 const TopBanner = () => (
-  <div>
+  <Wrapper>
     <Heading headingLevel="h2">Wake up with us</Heading>
     <PlainText>
       The app that helps you get up on the right side of bed
@@ -10,7 +16,7 @@ const TopBanner = () => (
     <Cta ctaType="Link" href="/create-routine">
       Create a routine
     </Cta>
-  </div>
+  </Wrapper>
 );
 
 export default TopBanner;
