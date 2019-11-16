@@ -4,9 +4,11 @@ import { HeaderWrapper } from "./HeaderPanel.style";
 
 import { MainNav } from "../../components";
 
+import Logo from "../../assets/logo-small.png";
+
 export default () => (
   <HeaderWrapper>
-    <p>LOGO</p>
+    <img src={Logo} />
     <MainNav />
   </HeaderWrapper>
 );
