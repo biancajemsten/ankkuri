@@ -16,6 +16,12 @@ import {
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/globalStyle";
 
+import styled from "styled-components";
+
+const MainWrapper = styled.main`
+  padding-top: 120px;
+`;
+
 class App extends React.Component {
   render() {
     return (
@@ -23,7 +29,7 @@ class App extends React.Component {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <HeaderPanel />
-          <main>
+          <MainWrapper>
             <Switch>
               <Route exact path="/" component={HomePanel} />
               <Route exact path="/about" component={AboutPanel} />
@@ -35,7 +41,7 @@ class App extends React.Component {
               <Route exact path="/slides" component={SlideDeck} />
               <Route exact path="/test" component={TestPanel} />
             </Switch>
-          </main>
+          </MainWrapper>
         </ThemeProvider>
       </Router>
     );
