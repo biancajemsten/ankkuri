@@ -1,3 +1,4 @@
 import React from "react";
+import QuestionPanel from "../QuestionPanel/QuestionPanel";
 
-export default () => <div>Create a routine</div>;
+export default () => <QuestionPanel />;
