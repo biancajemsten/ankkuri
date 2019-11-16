@@ -1,22 +1,33 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 // Components
-import Wave from '../../../assets/wave.svg'
+import Wave from "../../../assets/wave.svg";
+import WaveBlue from "../../../assets/wave-blue.svg";
 
 // Utils
-import rem from '../../../styles/utils/rem';
+import rem from "../../../styles/utils/rem";
 
 const Wrapper = styled.div`
-  /* background-image: url(${Wave});
+  height: 100vh;
+  padding: 30vh 0;
+
+  background-image: url(${Wave});
   background-position: top;
-  margin-top: -30vh;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 100vh;
-  padding: 30vh ${({theme}) => rem(theme.spacing.l1)};
 
-  transform-origin: 0 0;
-  transform: translateZ(-2px) scale(3); */
+  > * {
+      background-color: ${({ theme, waveColor }) => waveColor ? theme.colors[waveColor] : theme.colors.background};
+      padding: 0 ${({ theme }) => rem(theme.spacing.l1)};
+    }
+
+
+  ${({waveColor, theme}) => waveColor ? css`
+    ${waveColor === 'primary' && `
+      background-image: url(${WaveBlue});
+      color: ${theme.colors.white};
+    `}  
+  ` : ``}
 `;
 
 export { Wrapper };
