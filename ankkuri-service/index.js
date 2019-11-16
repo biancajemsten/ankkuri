@@ -1,29 +1,11 @@
-/**
-    Copyright 2017-2019 Amazon.com, Inc. and its affiliates. All Rights Reserved.
-    Licensed under the Amazon Software License (the "License").
-    You may not use this file except in compliance with the License.
-    A copy of the License is located at
-      http://aws.amazon.com/asl/
-    or in the "license" file accompanying this file. This file is distributed
-    on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express
-    or implied. See the License for the specific language governing
-    permissions and limitations under the License.
-    This skill demonstrates how to use Dialog Management to delegate slot
-    elicitation to Alexa. For more information on Dialog Directives see the
-    documentation: https://developer.amazon.com/docs/custom-skills/dialog-interface-reference.html
-    This skill also uses entity resolution to define synonyms. Combined with
-    dialog management, the skill can ask the user for clarification of a synonym
-    is mapped to two slot values.
- **/
-
-/* eslint-disable  func-names */
-/* eslint-disable  no-restricted-syntax */
-/* eslint-disable  no-loop-func */
-/* eslint-disable  consistent-return */
-/* eslint-disable  no-console */
-
 const Alexa = require("ask-sdk-core");
 const { getUser } = require("./helpers/getUserInfo");
+
+const { DynamoDbPersistenceAdapter } = require('ask-sdk-dynamodb-persistence-adapter');
+const persistenceAdapter = new DynamoDbPersistenceAdapter({
+  tableName: 'MorningRoutineStates',
+  createTable: true
+})
 /* INTENT HANDLERS */
 
 const LaunchRequestHandler = {
@@ -31,115 +13,158 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
   async handle(handlerInput) {
-    const accessToken = 'eyJraWQiOiJURjdcL0VqWm9sTEJFSGV0T2o2TnBSSGx2OXJTMFo3dWhcL2REbnNlZUpWczQ9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6InBob25lIG9wZW5pZCBlbWFpbCIsImF1dGhfdGltZSI6MTU3Mzg4NjkwNiwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfNmRzM2hvZlp6IiwiZXhwIjoxNTczOTAyOTgwLCJpYXQiOjE1NzM4OTkzODAsInZlcnNpb24iOjIsImp0aSI6IjU2ODY4OGQ0LWI5OGUtNGJkMS1hMjU2LTEzNzg2YzIyMjI0ZiIsImNsaWVudF9pZCI6IjZrdGhldWZpbDlidnRnM3NkNjBqbjNybWo5IiwidXNlcm5hbWUiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgifQ.kfkAMwx6aKsqIm8CbfuwdS0cDre5WmBOB5C02tQxyj3USNGsEmE-7vKJzk1ffetRKLqfui-wqfzXnCl7hSA94Y6zA5nG9LiuT0YG3jTZYw67XYri9FI3M4RNkAcytA-dCM05n2YZKaB7a3WQGhmzzPfK9KjLDsmOXkTac4jRaF5EGws_wbSPxBZkFUXEKkecyHfMUnmBuh6u60BHExQ9ceD6o29CAbejE-Hp7D-rt8Tmcve0Y8I3edYPiKj5lsZ_pIiLp2xk0UYYmTFl3UMfvDkH1F3Qtsvv8N7zIY4f30ARqB-P_rG1MD6Q9A7HMQA1guXHZEj_Zx_ndxEedP2J4Q';
-    if (accessToken) {
+    const accessToken =
+      handlerInput.requestEnvelope.context.System.user.accessToken;
+    let getPersistedAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+    if (accessToken && Object.keys(getPersistedAttributes).length == 0) {
       const user = await getUser(accessToken);
-      return handlerInput.responseBuilder
-        .speak(
-          `Good morning ${user.name}! It's time to start your day. Are you out of bed yet?`
-        )
-        .reprompt("Let me know if you're out of bed")
-        .getResponse();
-    } else {
-      return handlerInput.responseBuilder
-        .speak(
-          `Hello, please sign-in to Akkuri on your device to activate your customised morning routine.`
-        )
-        .getResponse();
+      const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+      sessionAttributes.user = user;
+      handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+      speechText = `Good morning ${user.name}! It's time to start your day. Are you up yet or still in bed?`
+
+    } else if (accessToken && getPersistedAttributes.action == 'goStretch') {
+      const user = await getUser(accessToken);
+      speechText = `Welcome back! I hope you feel better after stretching. Now ${user.preferences.drink}, or a shower?`
+      getPersistedAttributes = {
+        'action': 'goShower'
+      };
+      handlerInput.attributesManager.setPersistentAttributes(getPersistedAttributes);
+      await handlerInput.attributesManager.savePersistentAttributes();
+    } else if (accessToken && getPersistedAttributes.action == 'goShower') {
+      speechText = 'Almost finished. Remember you need to take your lunch to work with you. Have you packed it in your bag?'
+      getPersistedAttributes = {};
+      handlerInput.attributesManager.setPersistentAttributes(getPersistedAttributes);
+      await handlerInput.attributesManager.savePersistentAttributes();
     }
-  }
-};
-
-
-const YesNoIntentHandler = {
-  canHandle(handlerInput) {
-    const req = handlerInput.requestEnvelope.request;
-    return (
-      req.type === "IntentRequest" &&
-      req.intent.name === "AMAZON.YesIntent" || req.intent.name === "AMAZON.NoIntent"
-    );
-  },
-  handle(handlerInput) {
-    const req = handlerInput.requestEnvelope.request;
-    let answer = `Great! Let's go for a shower`;
-    if (req.intent.name == "AMAZON.NoIntent") {
-      speechText = `Ok, are you scrolling in bed?`;
-    } else {
-      speechText = answer;
-    }
-    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-    if (sessionAttributes.answered) {
-      speechText = 'Come on, put the phone down and go for a shower';
-
+    else {
+      speechText = `Hello, please sign-in to Ankkuri on your device to activate your customised morning routine.`;
     }
     return handlerInput.responseBuilder
       .speak(
         speechText
       )
-      .reprompt('You need to get up soon. Are you scrolling?')
+      .reprompt('are you still in bed?')
       .getResponse();
   }
 };
 
 
-// const NotOutOfBed = {
-//   canHandle(handlerInput) {
-//     const request = handlerInput.requestEnvelope.request;
-//     return (
-//       request.type === "IntentRequest" &&
-//       request.intent.name === "NotOutOfBed"
-//     );
-//   },
+const NotOutOfBed = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "NotOutOfBed"
+    );
+  },
 
-//   handle(handlerInput) {
-//     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-//     if (sessionAttributes.position == 'launch') {
-//       return handlerInput.responseBuilder
-//         .speak(
-//           "You need to get up soon. Are you scrolling?"
-//         )
-//         .reprompt("Come on, are you scrolling?")
-//         .getResponse();
-//     }
-//   }
+  handle(handlerInput) {
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    // sessionAttributes.user = user;
+    // handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+    if (sessionAttributes.user.routine.socialMedia == false) {
+      speechText = 'You need to get up soon. Are you scrolling or is your phone aside?'
+    } else if (sessionAttributes.user.routine.stretch == true) {
+      speechText = 'You need to get up soon. Shall we do some stretching or are you ready to shower?'
+    } else {
+      speechText = 'You need to get up soon.'
+    }
+    return handlerInput.responseBuilder
+      .speak(
+        speechText
+      )
+      .reprompt("Come on, are you scrolling?")
+      .getResponse();
+  }
 
-// };
+};
 
-// const YesScrolling = {
-//   canHandle(handlerInput) {
-//     const request = handlerInput.requestEnvelope.request;
+const YesScrolling = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "YesScrolling"
+    );
+  },
+  handle(handlerInput) {
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    if (sessionAttributes.user.routine.stretch == true && sessionAttributes.user.routine.meditate == true) {
+      speechText = "Ok, let's put the phone down and start with something easy. Shall we do some stretching and meditation or are you ready to shower?";
+    } else if (sessionAttributes.user.routine.stretch == true && sessionAttributes.user.routine.meditate == false) {
+      speechText = "Ok, let's put the phone down and start with something easy. Shall we do some stretching or are you ready to shower?"
+    } else {
+      speechText = "then I cannot help you"
+    }
+    return handlerInput.responseBuilder
+      .speak(
+        speechText
+      )
+      .reprompt("Strech or shower?")
+      .getResponse();
+  }
+};
 
-//     return (
-//       request.type === "IntentRequest" &&
-//       request.intent.name === "YesScrolling"
-//     );
-//   },
-//   handle(handlerInput) {
-//     return handlerInput.responseBuilder
-//       .speak(
-//         "Ok, let's put the phone down and start with something easy. How about 5 minutes of stretching to start the day?"
-//       )
-//       .getResponse();
-//   }
-// };
+const YesStretch = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "YesStretch"
+    );
+  },
+  async handle(handlerInput) {
+    let getPersistedAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+    speechText = "Ok do some stretches. When you're done just say 'Alexa, open Ankkuri routine'";
+    getPersistedAttributes = {
+      'action': 'goStretch'
+    };
+    handlerInput.attributesManager.setPersistentAttributes(getPersistedAttributes);
+    await handlerInput.attributesManager.savePersistentAttributes();
+    return handlerInput.responseBuilder
+      .speak(
+        speechText
+      )
+      .getResponse();
+  }
+};
 
-// const NoStretching = {
-//   canHandle(handlerInput) {
-//     const request = handlerInput.requestEnvelope.request;
+const HaveAShower = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "HaveAShower"
+    );
+  },
+  async handle(handlerInput) {
+    speechText = "Lovely, enjoy your shower and let me know when you're dressed. Just say 'Alexa, open Ankkuri routine'";
+    return handlerInput.responseBuilder
+      .speak(
+        speechText
+      )
+      .getResponse();
+  }
+};
 
-//     return (
-//       request.type === "IntentRequest" &&
-//       request.intent.name === "NoStretching"
-//     );
-//   },
-//   handle(handlerInput) {
-//     return handlerInput.responseBuilder
-//       .speak(
-//         "Sure no worries. Go get yourself some water, it's important to stay hydrated! Let me know when you've got it"
-//       )
-//       .getResponse();
-//   }
-// }
+const LunchPacked = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (
+      request.type === "IntentRequest" &&
+      request.intent.name === "AMAZON.YesIntent"
+    );
+  },
+  async handle(handlerInput) {
+    speechText = "Perfect! You've completed your morning routine. Have a great day and don't forget to take your keys!";
+    return handlerInput.responseBuilder
+      .speak(
+        speechText
+      )
+      .getResponse();
+  }
+}
 
 const FallbackHandler = {
   // 2018-Nov-21: AMAZON.FallackIntent is currently available in en-* and de-DE locales.
@@ -330,124 +355,18 @@ const SKILL_NAME = "Ankkuri Morning Routine";
 const FALLBACK_MESSAGE = `The ${SKILL_NAME} skill can\'t help you with that.  It can recommend the best job for you. Do you want to start your career or be a couch potato?`;
 const FALLBACK_REPROMPT = "What can I help you with?";
 
-const requiredSlots = [
-  "preferredSpecies",
-  "bloodTolerance",
-  "personality",
-  "salaryImportance"
-];
 
-const slotsToOptionsMap = {
-  "unimportant-introvert-low-animals": 20,
-  "unimportant-introvert-low-people": 8,
-  "unimportant-introvert-high-animals": 1,
-  "unimportant-introvert-high-people": 4,
-  "unimportant-extrovert-low-animals": 10,
-  "unimportant-extrovert-low-people": 3,
-  "unimportant-extrovert-high-animals": 11,
-  "unimportant-extrovert-high-people": 13,
-  "somewhat-introvert-low-animals": 20,
-  "somewhat-introvert-low-people": 6,
-  "somewhat-introvert-high-animals": 19,
-  "somewhat-introvert-high-people": 14,
-  "somewhat-extrovert-low-animals": 2,
-  "somewhat-extrovert-low-people": 12,
-  "somewhat-extrovert-high-animals": 17,
-  "somewhat-extrovert-high-people": 16,
-  "very-introvert-low-animals": 9,
-  "very-introvert-low-people": 15,
-  "very-introvert-high-animals": 17,
-  "very-introvert-high-people": 7,
-  "very-extrovert-low-animals": 17,
-  "very-extrovert-low-people": 0,
-  "very-extrovert-high-animals": 1,
-  "very-extrovert-high-people": 5
-};
-
-const options = [
-  { name: "Actor", description: "" },
-  { name: "Animal Control Worker", description: "" },
-  { name: "Animal Shelter Manager", description: "" },
-  { name: "Artist", description: "" },
-  { name: "Court Reporter", description: "" },
-  { name: "Doctor", description: "" },
-  { name: "Geoscientist", description: "" },
-  { name: "Investment Banker", description: "" },
-  { name: "Lighthouse Keeper", description: "" },
-  { name: "Marine Ecologist", description: "" },
-  { name: "Park Naturalist", description: "" },
-  { name: "Pet Groomer", description: "" },
-  { name: "Physical Therapist", description: "" },
-  { name: "Security Guard", description: "" },
-  { name: "Social Media Engineer", description: "" },
-  { name: "Software Engineer", description: "" },
-  { name: "Teacher", description: "" },
-  { name: "Veterinary", description: "" },
-  { name: "Veterinary Dentist", description: "" },
-  { name: "Zookeeper", description: "" },
-  { name: "Zoologist", description: "" }
-];
-
-/* HELPER FUNCTIONS */
-
-function getSlotValues(filledSlots) {
-  const slotValues = {};
-
-  console.log(`The filled slots: ${JSON.stringify(filledSlots)}`);
-  Object.keys(filledSlots).forEach(item => {
-    const name = filledSlots[item].name;
-
-    if (
-      filledSlots[item] &&
-      filledSlots[item].resolutions &&
-      filledSlots[item].resolutions.resolutionsPerAuthority[0] &&
-      filledSlots[item].resolutions.resolutionsPerAuthority[0].status &&
-      filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
-    ) {
-      switch (
-      filledSlots[item].resolutions.resolutionsPerAuthority[0].status.code
-      ) {
-        case "ER_SUCCESS_MATCH":
-          slotValues[name] = {
-            synonym: filledSlots[item].value,
-            resolved:
-              filledSlots[item].resolutions.resolutionsPerAuthority[0].values[0]
-                .value.name,
-            isValidated: true
-          };
-          break;
-        case "ER_SUCCESS_NO_MATCH":
-          slotValues[name] = {
-            synonym: filledSlots[item].value,
-            resolved: filledSlots[item].value,
-            isValidated: false
-          };
-          break;
-        default:
-          break;
-      }
-    } else {
-      slotValues[name] = {
-        synonym: filledSlots[item].value,
-        resolved: filledSlots[item].value,
-        isValidated: false
-      };
-    }
-  }, this);
-
-  return slotValues;
-}
 
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    YesNoIntentHandler,
-    InProgressRecommendationIntent,
-    CompletedRecommendationIntent,
-    HelpHandler,
-    ExitHandler,
-    FallbackHandler,
+    NotOutOfBed,
+    YesScrolling,
+    YesStretch,
+    HaveAShower,
+    LunchPacked,
     SessionEndedRequestHandler
   )
+  .withPersistenceAdapter(persistenceAdapter)
   .addErrorHandlers(ErrorHandler)
   .lambda();
