@@ -1,6 +1,8 @@
 import styled from "styled-components";
 const MenuItemWrapper = styled.li`
-  color: red;
+  display: inline-block;
+  margin: 0 20px;
+  padding: 20px;
 `;
 
 export { MenuItemWrapper };
