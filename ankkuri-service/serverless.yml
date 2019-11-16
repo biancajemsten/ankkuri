@@ -2,10 +2,34 @@ service: ankkuri
 
 frameworkVersion: ">=1.4.0 <2.0.0"
 
+custom:
+  userTable: "ankkuri-users"
+  userTableArn: arn:aws:dynamodb:eu-west-1:121752818199:table/ankkuri-users
+  cognitoPoolArn: arn:aws:cognito-idp:eu-west-1:121752818199:userpool/eu-west-1_6ds3hofZz
+  serverless-offline:
+    port: 3001
 provider:
   name: aws
   runtime: nodejs8.10
   region: eu-west-1
+  apiKeys:
+    - ankkuri
+  stackTags:
+    Project: "Ankkuri"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["AnkkuriUsers", "Arn"] }
+  environment:
+    ANKKURI_USER_TABLE: ${self:custom.userTable}
+    USER_POOL_ID: ${ssm:AnkkuriUserPoolId~true}
 
 functions:
   morningRoutine:
@@ -14,6 +38,14 @@ functions:
       - alexaSkill:
         appId: amzn1.ask.skill.c5a0e492-7e2f-4539-be94-c68c7f65550c
         enabled: true
+  getUser:
+    handler: apiRequestHandler.getUser
+    events:
+      - http:
+          path: getUser/{userId}
+          method: get
+          cors: true
+          private: true
 
 resources:
   Resources:
@@ -30,3 +62,6 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5
+
+plugins:
+  - serverless-offline
