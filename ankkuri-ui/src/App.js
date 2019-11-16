@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { hot } from "react-hot-loader/root";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { HomePanel, AboutPanel, HeaderPanel, SlideDeck } from "./views";
+import { Heading } from "./elements/";
 
 // Style
 import theme from "./styles/theme";
@@ -17,6 +18,9 @@ class App extends React.Component {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <HeaderPanel />
+          <main>
+            <Heading headingLevel="h2">Wake up with us</Heading>
+          </main>
           <Switch>
             <Route exact path="/" component={HomePanel} />
             <Route exact path="/about" component={AboutPanel} />
