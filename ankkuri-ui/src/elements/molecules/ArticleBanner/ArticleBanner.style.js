@@ -11,7 +11,6 @@ const ArticleBannerWrapper = styled.article`
 
   .left-container {
     display: inline-block;
-    width: 30%;
   }
 `;
 

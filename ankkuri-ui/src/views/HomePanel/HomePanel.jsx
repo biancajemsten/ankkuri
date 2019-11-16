@@ -1,7 +1,8 @@
 import React from "react";
 
 // Components
-import { TopBanner, ArticleBanner } from "../../elements/molecules";
+import { TopBanner } from '../../elements/molecules';
+import {WavesContainer} from '../../elements/molecules';
 
 // Styles
 import { HomePanelWrapper } from "./HomePanel.style";
@@ -9,6 +10,6 @@ import { HomePanelWrapper } from "./HomePanel.style";
 export default () => (
   <HomePanelWrapper>
     <TopBanner />
-    <ArticleBanner />
+    <WavesContainer />
   </HomePanelWrapper>
 );
