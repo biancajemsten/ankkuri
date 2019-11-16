@@ -31,8 +31,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
   async handle(handlerInput) {
-    const accessToken =
-      handlerInput.requestEnvelope.context.System.user.accessToken;
+    const accessToken = 'eyJraWQiOiJURjdcL0VqWm9sTEJFSGV0T2o2TnBSSGx2OXJTMFo3dWhcL2REbnNlZUpWczQ9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6InBob25lIG9wZW5pZCBlbWFpbCIsImF1dGhfdGltZSI6MTU3Mzg4NjkwNiwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfNmRzM2hvZlp6IiwiZXhwIjoxNTczOTAyOTgwLCJpYXQiOjE1NzM4OTkzODAsInZlcnNpb24iOjIsImp0aSI6IjU2ODY4OGQ0LWI5OGUtNGJkMS1hMjU2LTEzNzg2YzIyMjI0ZiIsImNsaWVudF9pZCI6IjZrdGhldWZpbDlidnRnM3NkNjBqbjNybWo5IiwidXNlcm5hbWUiOiJlYjMwYTY5Ni1jM2JmLTQzMmQtYmZjOS01ODk0OThjNjNjODgifQ.kfkAMwx6aKsqIm8CbfuwdS0cDre5WmBOB5C02tQxyj3USNGsEmE-7vKJzk1ffetRKLqfui-wqfzXnCl7hSA94Y6zA5nG9LiuT0YG3jTZYw67XYri9FI3M4RNkAcytA-dCM05n2YZKaB7a3WQGhmzzPfK9KjLDsmOXkTac4jRaF5EGws_wbSPxBZkFUXEKkecyHfMUnmBuh6u60BHExQ9ceD6o29CAbejE-Hp7D-rt8Tmcve0Y8I3edYPiKj5lsZ_pIiLp2xk0UYYmTFl3UMfvDkH1F3Qtsvv8N7zIY4f30ARqB-P_rG1MD6Q9A7HMQA1guXHZEj_Zx_ndxEedP2J4Q';
     if (accessToken) {
       const user = await getUser(accessToken);
       return handlerInput.responseBuilder
@@ -44,9 +43,8 @@ const LaunchRequestHandler = {
     } else {
       return handlerInput.responseBuilder
         .speak(
-          `Hello, please sign into Akkuri on your device to activate your customised morning routine.`
+          `Hello, please sign-in to Akkuri on your device to activate your customised morning routine.`
         )
-        .reprompt("Let me know if you're out of bed")
         .getResponse();
     }
   }
@@ -65,18 +63,14 @@ const YesNoIntentHandler = {
     const req = handlerInput.requestEnvelope.request;
     let answer = `Great! Let's go for a shower`;
     if (req.intent.name == "AMAZON.NoIntent") {
-      answer = 'in bed';
-      speechText = `Ok, are you scrolling ${answer}?`;
+      speechText = `Ok, are you scrolling in bed?`;
     } else {
       speechText = answer;
     }
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-    if (sessionAttributes.answered && req.intent.name == "AMAZON.YesIntent") {
+    if (sessionAttributes.answered) {
       speechText = 'Come on, put the phone down and go for a shower';
-    } else {
-      sessionAttributes.answered = true;
-      speechText = 'Great! Try having a stretch and then go for a shower'
-      handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+
     }
     return handlerInput.responseBuilder
       .speak(
