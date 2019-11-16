@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: ${text.weight.medium};
 
     background-color: ${colors.background};
+    color: ${colors.primary};
 
     padding: 0 ${rem(100)};
   }
