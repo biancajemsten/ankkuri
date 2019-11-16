@@ -23,21 +23,32 @@
 /* eslint-disable  no-console */
 
 const Alexa = require("ask-sdk-core");
-
+const { getUser } = require("./helpers/getUserInfo");
 /* INTENT HANDLERS */
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak(
-        "Good morning Alys! It's time to start your day. Are you out of bed yet?"
-      )
-      .reprompt("Let me know if you're out of bed")
-      .getResponse();
-    self.attrbiutes["lastQuestionID"] = questionId
+  async handle(handlerInput) {
+    const accessToken =
+      handlerInput.requestEnvelope.context.System.user.accessToken;
+    if (accessToken) {
+      const user = await getUser(accessToken);
+      return handlerInput.responseBuilder
+        .speak(
+          `Good morning ${user.name}! It's time to start your day. Are you out of bed yet?`
+        )
+        .reprompt("Let me know if you're out of bed")
+        .getResponse();
+    } else {
+      return handlerInput.responseBuilder
+        .speak(
+          `Hello, please sign into Akkuri on your device to activate your customised morning routine.`
+        )
+        .reprompt("Let me know if you're out of bed")
+        .getResponse();
+    }
   }
 };
 
@@ -154,7 +165,6 @@ const FallbackHandler = {
       .getResponse();
   }
 };
-
 
 const InProgressRecommendationIntent = {
   canHandle(handlerInput) {

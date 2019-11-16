@@ -1,3 +1,13 @@
 import React from "react";
 
-export default () => <div>Home Panel</div>;
+// Components
+import { TopBanner } from '../../elements/molecules';
+
+// Styles
+import { HomePanelWrapper } from "./HomePanel.style";
+
+export default () => (
+  <HomePanelWrapper>
+    <TopBanner />
+  </HomePanelWrapper>
+);
