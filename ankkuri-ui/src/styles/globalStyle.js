@@ -6,10 +6,11 @@ import rem from "./utils/rem";
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${text.bodyFont};
-    font-size: ${text.sizes.base};
+    font-size: ${rem(text.sizes.base)};
     font-weight: ${text.weight.medium};
 
     background-color: ${colors.background};
+    color: ${colors.primary};
 
     padding: 0 ${rem(100)};
   }
@@ -20,27 +21,27 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1, .h1 {
-    font-size: ${text.sizes.h1};
+    font-size: ${rem(text.sizes.h1)};
   }
 
   h2, .h2 {
-    font-size: ${text.sizes.h2};
+    font-size: ${rem(text.sizes.h2)};
   }
 
   h3, .h3 {
-    font-size: ${text.sizes.h3};
+    font-size: ${rem(text.sizes.h3)};
   }
 
   h4, .h4 {
-    font-size: ${text.sizes.h4};
+    font-size: ${rem(text.sizes.h4)};
   }
 
   h5, .h5 {
-    font-size: ${text.sizes.h5};
+    font-size: ${rem(text.sizes.h5)};
   }
 
   h6, .h6 {
-    font-size: ${text.sizes.h6};
+    font-size: ${rem(text.sizes.h6)};
   }
 
 `;
