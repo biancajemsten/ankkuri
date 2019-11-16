@@ -3,8 +3,12 @@ const path = require("path");
 const dotenv = require("dotenv");
 // const Dotenv = require("dotenv-webpack");
 
-const config = () => {
-  const env = dotenv.config({ path: "./.env" }).parsed;
+const config = mode => {
+  console.log(mode);
+  let env;
+  if (mode.ENVIRONMENT === "development") {
+    env = dotenv.config({ path: "./.env" }).parsed;
+  } else env = process.env;
   const envKeys = Object.keys(env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(env[next]);
     return prev;

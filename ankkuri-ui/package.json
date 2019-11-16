@@ -5,7 +5,7 @@
   "main": "App.js",
   "scripts": {
     "start": "webpack-dev-server --env.ENVIRONMENT=development --hot --mode=development --open",
-    "build": "webpack -p  --env.ENVIRONMENT=production --mode production",
+    "build": "webpack -p --env.ENVIRONMENT=production --mode production",
     "clean": "rm dist/bundle.js"
   },
   "author": "",
