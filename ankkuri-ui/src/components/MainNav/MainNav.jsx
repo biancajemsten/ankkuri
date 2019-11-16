@@ -9,6 +9,7 @@ export default () => (
     <ul className="navList">
       <MenuItem linkName="Home" route="/home" />
       <MenuItem linkName="About" route="/about" />
+      <MenuItem linkName="Slides" route="/slides" />
     </ul>
   </MainNavWrapper>
 );
