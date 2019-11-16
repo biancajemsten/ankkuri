@@ -12,7 +12,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${colors.background};
     color: ${colors.primary};
 
-    padding: 0 ${rem(100)};
+    margin: 0;
+
+    /* padding: 0 ${rem(100)}; */
   }
 
   h1, h2, h3, h4, h5, h5, .h1, .h2, .h3, .h4, .h5, .h6 {
