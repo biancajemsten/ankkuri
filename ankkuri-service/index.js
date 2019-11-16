@@ -15,6 +15,7 @@ const LaunchRequestHandler = {
   async handle(handlerInput) {
     const accessToken =
       handlerInput.requestEnvelope.context.System.user.accessToken;
+    console.log('-------------', handlerInput.requestEnvelope.context.System);
     let getPersistedAttributes = await handlerInput.attributesManager.getPersistentAttributes();
     if (accessToken && Object.keys(getPersistedAttributes).length == 0) {
       const user = await getUser(accessToken);
