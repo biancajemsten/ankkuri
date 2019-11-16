@@ -1,0 +1,57 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "ankkuri morning routine",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "NotOutOfBed",
+          "slots": [],
+          "samples": [
+            "nah",
+            "nope",
+            "not yet",
+            "no i'm still in bed",
+            "still in bed",
+            "i'm still in bed",
+            "no i'm not",
+            "no"
+          ]
+        },
+        {
+          "name": "YesScrolling",
+          "slots": [],
+          "samples": [
+            "yep I am scrolling",
+            "yep",
+            "I am",
+            "I'm scrolling",
+            "yes I'm scrolling",
+            "yes I am",
+            "yes"
+          ]
+        }
+      ],
+      "types": []
+    }
+  }
+}
