@@ -1,2 +1,0 @@
-export const DEFAULT_SLIDE_ELEMENT_INDEX = -1;
-export const DEFAULT_SLIDE_INDEX = 0;
