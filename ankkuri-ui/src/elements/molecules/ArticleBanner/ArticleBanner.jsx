@@ -20,11 +20,11 @@ export default () => (
         if you've locked your house or turned your straighteners off? There's a
         science behind having a good morning routine, it can set you up for a
         day of success.
-        <Cta ctaType="Link" href="/the-science">
-          Read more about the science
-        </Cta>
       </PlainText>
+      <Cta ctaType="Link" href="/the-science">
+        Read more about the science
+      </Cta>
     </div>
-    <img src={img} />
+    <img src={img} alt="" />
   </ArticleBannerWrapper>
 );
