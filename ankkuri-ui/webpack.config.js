@@ -5,14 +5,25 @@ const dotenv = require("dotenv");
 
 const config = mode => {
   console.log(mode);
-  let env;
+  let envKeys;
   if (mode.ENVIRONMENT === "development") {
-    env = dotenv.config({ path: "./.env" }).parsed;
+    const env = dotenv.config({ path: "./.env" }).parsed;
+    envKeys = Object.keys(env).reduce((prev, next) => {
+      prev[`process.env.${next}`] = JSON.stringify(env[next]);
+      return prev;
+    }, {});
   } else env = process.env;
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);
-    return prev;
-  }, {});
+  envKeys = {
+    "process.env.REACT_APP_API_URL": JSON.stringify(
+      process.env.REACT_APP_API_URL
+    ),
+    "process.env.REACT_APP_API_KEY": JSON.stringify(
+      process.env.REACT_APP_API_KEY
+    ),
+    "process.env.REACT_APP_MOCK_USER_ID": JSON.stringify(
+      process.env.REACT_APP_MOCK_USER_ID
+    )
+  };
   console.log(new webpack.DefinePlugin(envKeys));
   return {
     entry: ["react-hot-loader/patch", "./src/App.js"],
