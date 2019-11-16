@@ -13,5 +13,11 @@ export default {
 
   l1: 80,
   l2: 120,
-  l3: 160
+  l3: 160,
+
+  xl1: 200,
+  xl2: 240,
+  xl3: 280,
+
+  navigation: 100
 };

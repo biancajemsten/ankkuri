@@ -9,9 +9,10 @@ const MenuItemWrapper = styled.li`
   }
 
   .menuItem-link {
-    font-family: futura;
+    font-family: ${({ theme }) => theme.text.bodyFont};
     text-decoration: none;
     text-transform: lowercase;
+    font-size: 20px;
 
     &.active {
       color: #e6a444;

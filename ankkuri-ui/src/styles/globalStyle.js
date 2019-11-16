@@ -1,9 +1,13 @@
 import { createGlobalStyle } from "styled-components";
+
+// Style
 import text from "./text";
 import colors from "./colors";
 import rem from "./utils/rem";
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Playfair+Display:900&display=swap');
+
   body {
     font-family: ${text.bodyFont};
     font-size: ${rem(text.sizes.base)};
@@ -13,8 +17,6 @@ const GlobalStyle = createGlobalStyle`
     color: ${colors.primary};
 
     margin: 0;
-
-    /* padding: 0 ${rem(100)}; */
   }
 
   h1, h2, h3, h4, h5, h5, .h1, .h2, .h3, .h4, .h5, .h6 {

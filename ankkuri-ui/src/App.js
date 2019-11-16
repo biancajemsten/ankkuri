@@ -15,6 +15,7 @@ import {
 // Style
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/globalStyle";
+import ProfilePanel from './views/ProfilePanel/ProfilePanel';
 
 import styled from "styled-components";
 
@@ -39,6 +40,7 @@ class App extends React.Component {
                 component={CreateRoutinePanel}
               />
               <Route exact path="/slides" component={SlideDeck} />
+              <Route exact path="/profile" component={ProfilePanel} />
               <Route exact path="/test" component={TestPanel} />
             </Switch>
           </MainWrapper>

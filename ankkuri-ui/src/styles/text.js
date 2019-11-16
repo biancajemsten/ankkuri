@@ -7,7 +7,7 @@ export default {
     h2: 60,
     h3: 50,
     h4: 40,
-    h5: 32,
+    h5: 24,
     h6: 15
   },
   weight: {
