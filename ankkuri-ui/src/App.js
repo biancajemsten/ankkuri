@@ -33,7 +33,7 @@ class App extends React.Component {
           <MainWrapper>
             <Switch>
               <Route exact path="/" component={HomePanel} />
-              <Route exact path="/about" component={AboutPanel} />
+              <Route exact path="/the-science" component={AboutPanel} />
               <Route
                 exact
                 path="/create-routine"
