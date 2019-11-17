@@ -18,10 +18,8 @@ import GlobalStyle from "./styles/globalStyle";
 import ProfilePanel from "./views/ProfilePanel/ProfilePanel";
 
 import styled from "styled-components";
-import { Footer } from './elements/molecules';
 
 const MainWrapper = styled.main`
-  padding-top: 120px;
 `;
 
 class App extends React.Component {

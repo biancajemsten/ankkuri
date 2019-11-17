@@ -14,7 +14,7 @@ export default ({ question }) => {
         </div>
       ) : (
         <>
-          <Heading headingLevel="h2">{question.sectionHeading}</Heading>
+          <h2 className="h3">{question.sectionHeading}</h2>
           <PlainText>{question.question}</PlainText>
 
           {question.answerType === "string" ? (

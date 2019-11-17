@@ -1,9 +1,7 @@
 import styled from "styled-components";
-const MenuItemWrapper = styled.li`
+export const MenuItemWrapper = styled.li`
   display: inline-block;
-  margin: 0 10px;
-  padding: 0 20px;
-
+  margin: 0 20px;
   &:last-child {
     padding-right: 0;
   }
@@ -14,10 +12,26 @@ const MenuItemWrapper = styled.li`
     text-transform: lowercase;
     font-size: 20px;
 
+    &:after {
+      content: "";
+      position: relative;
+      height: 2px;
+      background-color: ${({ theme }) => theme.colors.secondaryAccent};
+      width: 50%;
+      margin-top: 5px;
+      transform: translateX(-100%);
+      opacity: 0;
+      display: block;
+      
+      transition: transform 0.5s;
+    }
+
     &.active {
-      color: #e6a444;
+      color: ${({ theme }) => theme.colors.secondaryAccent};
+      &:after {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
   }
 `;
-
-export { MenuItemWrapper };

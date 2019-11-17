@@ -38,7 +38,7 @@ const config = mode => {
           use: "babel-loader",
           exclude: /node_modules/
         },
-        { test: /\.(png|jpg|jpeg|svg)$/, use: "file-loader" }
+        { test: /\.(png|jpg|jpeg|svg|ico)$/, use: "file-loader" }
       ]
     },
     resolve: {
@@ -53,5 +53,9 @@ const config = mode => {
     plugins: [new webpack.DefinePlugin(envKeys)]
   };
 };
+
+new HtmlWebpackPlugin({
+  favicon: "./src/assets/favicon.ico"
+})
 
 module.exports = config;
