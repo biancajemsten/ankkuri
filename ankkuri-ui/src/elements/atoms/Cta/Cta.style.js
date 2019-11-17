@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 import colors from "../../../styles/colors";
+import text from "../../../styles/text";
+import rem from "../../../styles/utils/rem";
 
 const CTAWrapper = styled.div`
   margin: 50px 0 0;
@@ -14,6 +16,7 @@ const CTAWrapper = styled.div`
     background: ${colors.accent};
     border-radius: 30px;
     color: ${colors.white};
+    font-size: ${rem(text.sizes.base)};
     padding: 15px 31px;
     text-decoration: none;
     text-transform: lowercase;
