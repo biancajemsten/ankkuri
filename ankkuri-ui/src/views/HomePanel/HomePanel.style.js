@@ -17,7 +17,7 @@ const HomePanelWrapper = styled.div`
   perspective-origin: 0 0;
   top: 0;
   z-index: -1;
-  padding-top: 175px;
+  padding-top: 100px;
 
   &:before {
     content: "";

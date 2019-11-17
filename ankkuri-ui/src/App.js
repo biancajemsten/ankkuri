@@ -18,6 +18,7 @@ import GlobalStyle from "./styles/globalStyle";
 import ProfilePanel from "./views/ProfilePanel/ProfilePanel";
 
 import styled from "styled-components";
+import { Footer } from './elements/molecules';
 
 const MainWrapper = styled.main`
   padding-top: 120px;
@@ -33,7 +34,7 @@ class App extends React.Component {
           <MainWrapper>
             <Switch>
               <Route exact path="/" component={HomePanel} />
-              <Route exact path="/about" component={AboutPanel} />
+              <Route exact path="/the-science" component={AboutPanel} />
               <Route
                 exact
                 path="/create-routine"

@@ -4,7 +4,7 @@ import rem from "../../styles/utils/rem";
 const HeaderWrapper = styled.header`
   width: 100%;
   padding: ${({ theme }) =>
-    `${rem(theme.spacing.s2)} ${rem(theme.spacing.l1)}`};
+    `${rem(theme.spacing.s2)} ${rem(theme.spacing.l2)}`};
   position: fixed;
   top: 0;
 
