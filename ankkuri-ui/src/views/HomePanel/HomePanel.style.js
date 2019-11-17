@@ -50,11 +50,7 @@ export const MarketingContainer = styled.div`
   > div {
     box-sizing: border-box;
     background-color: ${({ theme }) => theme.colors.accent};
-    width: 85%;
-    padding: ${({ theme }) =>
-      `${rem(theme.spacing.l3)} ${rem(theme.spacing.l1)} ${rem(
-        theme.spacing.l3
-      )} ${rem(theme.spacing.l3)}`};
+    padding: ${({ theme }) => rem(theme.spacing.l3)};
     color: white;
     img {
       width: 30%;

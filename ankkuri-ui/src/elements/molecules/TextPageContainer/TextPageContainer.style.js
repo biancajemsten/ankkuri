@@ -3,7 +3,7 @@ import Waves from "../../../assets/waves.jpeg";
 import rem from "../../../styles/utils/rem";
 
 export const Wrapper = styled.div`
-  padding-top: ${({ theme }) => rem(theme.spacing.navigation)};
+  padding: 15% 0;
   min-height: 100vh;
 
   background-image: url(${Waves});
@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 export const ContentContainer = styled.div`
   text-align: center;
   width: 70vw;
+  box-sizing: border-box;
   padding: ${({ theme }) =>
     `${rem(theme.spacing.m1)} ${rem(theme.spacing.l1)}`};
   margin: 0 auto;
