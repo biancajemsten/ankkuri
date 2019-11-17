@@ -17,6 +17,11 @@ const HeaderWrapper = styled.header`
 
   background-color: rgba(255, 255, 255, 0.8);
 
+  @media screen and (max-width: 879px) {
+    flex-direction: column;
+    padding: ${({ theme }) => `${rem(theme.spacing.s2)} 0`};
+  }
+
   .logo {
     height: 50px;
     object-fit: contain;

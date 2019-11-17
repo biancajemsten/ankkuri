@@ -20,6 +20,11 @@ export const ContentContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   .detail-wrapper {
     display: flex;
+
+    @media screen and (max-width: 1000px) {
+      flex-wrap: wrap;
+    }
+
     > div {
       margin: ${({ theme }) => `0 ${rem(theme.spacing.s1)}`};
     }
