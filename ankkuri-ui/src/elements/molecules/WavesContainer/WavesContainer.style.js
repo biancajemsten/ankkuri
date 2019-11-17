@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   > * {
     background-color: ${({ theme, waveColor }) =>
       waveColor ? theme.colors[waveColor] : theme.colors.background};
+    margin: ${({ theme }) => rem(theme.spacing.l3)} 0 0;
     padding: 0 ${({ theme }) => rem(theme.spacing.l1)}
       ${({ theme }) => rem(theme.spacing.l1)};
   }
