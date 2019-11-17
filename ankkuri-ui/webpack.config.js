@@ -54,8 +54,4 @@ const config = mode => {
   };
 };
 
-new HtmlWebpackPlugin({
-  favicon: "./src/assets/favicon.ico"
-})
-
 module.exports = config;
