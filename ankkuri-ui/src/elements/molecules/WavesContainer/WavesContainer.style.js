@@ -8,13 +8,11 @@ import WaveBlue from "../../../assets/wave-blue.svg";
 import rem from "../../../styles/utils/rem";
 
 const Wrapper = styled.div`
-  height: 100vh;
-  padding: 30vh 0 0;
-
   background-image: url(${Wave});
   background-position: top;
   background-size: contain;
   background-repeat: no-repeat;
+  padding: 4vh 0 0;
 
   > * {
     background-color: ${({ theme, waveColor }) =>
