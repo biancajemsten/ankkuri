@@ -15,7 +15,7 @@ const QuestionPanelWrapper = styled.div`
   }
 
   .button-container {
-    max-width: 58%;
+    max-width: 67%;
     margin: 0 auto;
   }
 `;

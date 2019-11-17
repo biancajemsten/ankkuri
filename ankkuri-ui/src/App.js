@@ -10,12 +10,12 @@ import {
   HeaderPanel,
   SlideDeck,
   CreateRoutinePanel,
-  TestPanel
+  DataPrivacy
 } from "./views";
 // Style
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/globalStyle";
-import ProfilePanel from './views/ProfilePanel/ProfilePanel';
+import ProfilePanel from "./views/ProfilePanel/ProfilePanel";
 
 import styled from "styled-components";
 import { Footer } from './elements/molecules';
@@ -34,7 +34,7 @@ class App extends React.Component {
           <MainWrapper>
             <Switch>
               <Route exact path="/" component={HomePanel} />
-              <Route exact path="/about" component={AboutPanel} />
+              <Route exact path="/the-science" component={AboutPanel} />
               <Route
                 exact
                 path="/create-routine"
@@ -42,7 +42,7 @@ class App extends React.Component {
               />
               <Route exact path="/slides" component={SlideDeck} />
               <Route exact path="/profile" component={ProfilePanel} />
-              <Route exact path="/test" component={TestPanel} />
+              <Route exact path="/data-privacy" component={DataPrivacy} />
             </Switch>
           </MainWrapper>
         </ThemeProvider>
