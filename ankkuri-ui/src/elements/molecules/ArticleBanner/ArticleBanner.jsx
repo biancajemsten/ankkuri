@@ -8,18 +8,18 @@ import Column from "../../atoms/Column/Column";
 
 export default () => (
   <ArticleBannerWrapper>
-    <Heading headingLevel="h2">The Science</Heading>
+    <h3>The Science</h3>
     <Row>
       <Column md={6}>
-        <div className="left-container">
+        <div>
           <blockquote>
-            <span className="quoteMarks">"</span>Having a morning routine can
-            increase your energy, productivity and positivity.
-            <span className="quoteMarks">"</span>
+            "Having a morning routine can increase your energy, productivity and
+            positivity."
             <br />
-            - Luna Greenstein, National
-            Alliance on Mental Illness
           </blockquote>
+          <p className="quoteBy">
+            - Luna Greenstein, National Alliance on Mental Illness
+          </p>
           <PlainText>
             Do you find yourself struggling to get up? Are you constantly
             forgetting if you've locked your house or turned your straighteners
