@@ -4,7 +4,7 @@ import rem from "../../../styles/utils/rem";
 export const Wrapper = styled.div`
   padding: ${({ theme }) =>
     `${rem(theme.spacing.m1)} ${rem(theme.spacing.m2)}`};
-  border-radius: ${({ theme }) => rem(theme.spacing.s3)};
+  border-radius: ${({ theme }) => rem(theme.spacing.s1)};
   margin-right: ${({ theme }) => rem(theme.spacing.s3)};
   min-width: 232px;
   box-sizing: border-box;

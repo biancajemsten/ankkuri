@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-import colors from "../../styles/colors";
 import Waves from "../../assets/waves.jpeg";
-import Wave from "../../assets/wave.svg";
 
 import { Wrapper as WaveContainer } from "../../elements/molecules/WavesContainer/WavesContainer.style";
 import rem from "../../styles/utils/rem";
@@ -40,6 +38,77 @@ const HomePanelWrapper = styled.div`
 
     p {
       height: 100%;
+    }
+  }
+`;
+
+export const MarketingContainer = styled.div`
+  padding: 0;
+  min-height: 100vh;
+  margin: 80px 0 0;
+
+  > div {
+    box-sizing: border-box;
+    background-color: ${({ theme }) => theme.colors.accent};
+    padding: ${({ theme }) => rem(theme.spacing.l3)};
+    color: white;
+    img {
+      width: 30%;
+      display: inline-block;
+    }
+    h2 {
+      text-align: right;
+      margin: 0 0 50px;
+    }
+    > div {
+      max-width: 60%;
+      float: right;
+      p {
+        text-align: right;
+        box-sizing: border-box;
+        line-height: 1.8;
+        &.align-left {
+          margin-top: 100px;
+          text-align: left;
+        }
+      }
+      blockquote {
+        margin-top: 150px;
+        display: block;
+        font-size: ${({ theme }) => rem(theme.text.sizes.h5)};
+        font-family: ${({ theme }) => theme.text.headerFont};
+        text-align: right;
+      }
+    }
+    a {
+      background: ${({ theme }) => theme.colors.accentTint};
+      border-radius: 30px;
+      color: ${({ theme }) => theme.colors.white};
+      padding: 15px 31px;
+      text-decoration: none;
+      text-transform: lowercase;
+      transition: background-color 0.5s;
+      float: right;
+
+      &.select {
+        background: ${({ theme }) => theme.colors.primary};
+        color: ${({ theme }) => theme.colors.white};
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+          background: ${({ theme }) => theme.colors.primary};
+        }
+
+        &.isActive {
+          background: ${({ theme }) => theme.colors.primaryTint};
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background: ${({ theme }) => theme.colors.accentTint};
+      }
     }
   }
 `;

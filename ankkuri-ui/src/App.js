@@ -34,7 +34,6 @@ const DesktopWrapper = styled.div`
 `;
 
 const MainWrapper = styled.main`
-  padding-top: 120px;
 `;
 
 class App extends React.Component {

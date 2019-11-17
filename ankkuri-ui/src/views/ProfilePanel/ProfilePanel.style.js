@@ -19,13 +19,13 @@ export const ProfileContainer = styled.div`
   position: relative;
 
   padding: ${({ theme }) => rem(theme.spacing.l1)} 0;
-  margin: 15% auto 0;
-  border-top-right-radius: ${({ theme }) => rem(theme.spacing.navigation)};
-  border-top-left-radius: ${({ theme }) => rem(theme.spacing.navigation)};
+  margin: 10% auto 0;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: ${({ theme }) => theme.colors.background};
 
-  width: 90%;
+  width: 80%;
 
   img.avatar {
     position: absolute;
@@ -63,12 +63,13 @@ export const ProfileContainer = styled.div`
   }
 
   ${CardsContainer} {
-    padding-left: ${({ theme }) => rem(theme.spacing.l3)};
+    padding: 0 ${({ theme }) => rem(theme.spacing.l3)} 10px;
     box-sizing: border-box;
     width: 100%;
   }
 `;
 
 export const GoalContainer = styled.div`
-  padding: ${({ theme }) => `${rem(theme.spacing.l1)} ${rem(theme.spacing.l3)}`};
+  padding: ${({ theme }) =>
+    `${rem(theme.spacing.l1)} ${rem(theme.spacing.l3)}`};
 `;

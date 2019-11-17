@@ -17,11 +17,22 @@ const QuestionPanelWrapper = styled.div`
     font-size: ${rem(text.sizes.h5)};
     outline: 0;
     text-align: center;
+    min-width: 60%;
+    line-height: 60px;
   }
 
   .button-container {
     max-width: 67%;
     margin: 0 auto;
+  }
+
+  h2 {
+    text-align: left;
+    margin-bottom: 100px;
+  }
+
+  p {
+    font-size: 28px;
   }
 `;
 
