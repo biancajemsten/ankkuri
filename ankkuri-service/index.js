@@ -21,7 +21,8 @@ const LaunchRequestHandler = {
       const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
       sessionAttributes.user = user;
       handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-      speechText = `Good morning ${user.name}! It's time to start your day. Are you up yet or still in bed?`
+      const names = user.name.split(' ');
+      speechText = `Good morning ${names[0]}! It's day number ${user.streak}, only ${user.goal - user.streak} days left to reach your goal! Are you up yet or still in bed?`
 
     } else if (accessToken && getPersistedAttributes.action == 'goStretch') {
       const user = await getUser(accessToken);
