@@ -13,10 +13,17 @@ const DataPrivacyWrapper = styled.div`
 
 const PolicyContainer = styled.div`
   text-align: center;
-  width: 90%;
-  padding: ${({ theme }) => rem(theme.spacing.l1)} 0;
+  width: 70vw;
+  padding: ${({ theme }) =>
+    `${rem(theme.spacing.m1)} ${rem(theme.spacing.l1)}`};
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.background};
+  .detail-wrapper {
+    display: flex;
+    > div {
+      margin: ${({ theme }) => `0 ${rem(theme.spacing.s1)}`};
+    }
+  }
 `;
 
 export { DataPrivacyWrapper, PolicyContainer };
