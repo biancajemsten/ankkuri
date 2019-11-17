@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Waves from "../../assets/waves.jpeg";
-import rem from "../../styles/utils/rem";
+import Waves from "../../../assets/waves.jpeg";
+import rem from "../../../styles/utils/rem";
 
-const DataPrivacyWrapper = styled.div`
+export const Wrapper = styled.div`
   padding-top: ${({ theme }) => rem(theme.spacing.navigation)};
   min-height: 100vh;
 
@@ -11,7 +11,7 @@ const DataPrivacyWrapper = styled.div`
   background-repeat: no-repeat;
 `;
 
-const PolicyContainer = styled.div`
+export const ContentContainer = styled.div`
   text-align: center;
   width: 70vw;
   padding: ${({ theme }) =>
@@ -30,5 +30,3 @@ const PolicyContainer = styled.div`
     }
   }
 `;
-
-export { DataPrivacyWrapper, PolicyContainer };
