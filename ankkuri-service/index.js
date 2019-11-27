@@ -366,6 +366,7 @@ exports.handler = skillBuilder
     YesStretch,
     HaveAShower,
     LunchPacked,
+    FallbackHandler,
     SessionEndedRequestHandler
   )
   .withPersistenceAdapter(persistenceAdapter)
