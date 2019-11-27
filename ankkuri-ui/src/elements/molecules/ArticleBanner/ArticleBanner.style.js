@@ -5,7 +5,6 @@ import theme from "../../../styles/theme";
 
 const ArticleBannerWrapper = styled.article`
   margin-top: 10%;
-  min-height: 100vh;
   blockquote {
     display: block;
     font-size: ${rem(theme.text.sizes.h5)};

@@ -18,10 +18,22 @@ import GlobalStyle from "./styles/globalStyle";
 import ProfilePanel from "./views/ProfilePanel/ProfilePanel";
 
 import styled from "styled-components";
-import { Footer } from './elements/molecules';
+
+const DesktopWrapper = styled.div`
+  @media screen and (max-width: 660px) {
+    > * {
+      display: none;
+    }
+
+    &::before {
+      font-weight: bold;
+      color: navy;
+      content: "This app is only available on bigger viewports. Please switch to a device with 660px or larger.";
+    }
+  }
+`;
 
 const MainWrapper = styled.main`
-  padding-top: 120px;
 `;
 
 class App extends React.Component {
@@ -29,22 +41,24 @@ class App extends React.Component {
     return (
       <Router>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <HeaderPanel />
-          <MainWrapper>
-            <Switch>
-              <Route exact path="/" component={HomePanel} />
-              <Route exact path="/the-science" component={AboutPanel} />
-              <Route
-                exact
-                path="/create-routine"
-                component={CreateRoutinePanel}
-              />
-              <Route exact path="/slides" component={SlideDeck} />
-              <Route exact path="/profile" component={ProfilePanel} />
-              <Route exact path="/data-privacy" component={DataPrivacy} />
-            </Switch>
-          </MainWrapper>
+          <DesktopWrapper>
+            <GlobalStyle />
+            <HeaderPanel />
+            <MainWrapper>
+              <Switch>
+                <Route exact path="/" component={HomePanel} />
+                <Route exact path="/the-science" component={AboutPanel} />
+                <Route
+                  exact
+                  path="/create-routine"
+                  component={CreateRoutinePanel}
+                />
+                <Route exact path="/slides" component={SlideDeck} />
+                <Route exact path="/profile" component={ProfilePanel} />
+                <Route exact path="/data-privacy" component={DataPrivacy} />
+              </Switch>
+            </MainWrapper>
+          </DesktopWrapper>
         </ThemeProvider>
       </Router>
     );
