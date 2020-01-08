@@ -19,13 +19,16 @@ export const ProfileContainer = styled.div`
   position: relative;
 
   padding: ${({ theme }) => rem(theme.spacing.l1)} 0;
-  margin: 10% auto 0;
+  margin: 170px auto 0;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 
   background-color: ${({ theme }) => theme.colors.background};
+  width: 90%;
 
-  width: 80%;
+  @media (min-width: 879px) {
+    width: 80%;
+  }
 
   img.avatar {
     position: absolute;
@@ -49,8 +52,15 @@ export const ProfileContainer = styled.div`
   }
 
   > h5 {
-    padding: 0 ${({ theme }) => rem(theme.spacing.l3)};
+    padding: 0 ${({ theme }) => rem(theme.spacing.s3)};
     letter-spacing: 1px;
+    @media (min-width: 660px) {
+      padding: 0 ${({ theme }) => rem(theme.spacing.m3)};
+    }
+
+    @media (min-width: 879px) {
+      padding: 0 ${({ theme }) => rem(theme.spacing.l3)};
+    }
   }
 
   p {
@@ -63,13 +73,29 @@ export const ProfileContainer = styled.div`
   }
 
   ${CardsContainer} {
-    padding: 0 ${({ theme }) => rem(theme.spacing.l3)} 10px;
+    padding: 0 ${({ theme }) => rem(theme.spacing.s3)} 10px;
     box-sizing: border-box;
     width: 100%;
+
+    @media (min-width: 660px) {
+      padding: 0 ${({ theme }) => rem(theme.spacing.m3)} 10px;
+    }
+
+    @media (min-width: 879px) {
+      padding: 0 ${({ theme }) => rem(theme.spacing.l3)} 10px;
+    }
   }
 `;
 
 export const GoalContainer = styled.div`
   padding: ${({ theme }) =>
-    `${rem(theme.spacing.l1)} ${rem(theme.spacing.l3)}`};
+    `${rem(theme.spacing.l1)} ${rem(theme.spacing.s3)}`};
+
+  @media (min-width: 660px) {
+    padding: 0 ${({ theme }) => rem(theme.spacing.m3)};
+  }
+
+  @media (min-width: 879px) {
+    padding: 0 ${({ theme }) => rem(theme.spacing.l3)};
+  }
 `;
