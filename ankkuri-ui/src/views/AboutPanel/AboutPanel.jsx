@@ -29,7 +29,7 @@ export default () => (
     </p>
     <h5>Why does it work?</h5>
     <Row>
-      <Column md={6}>
+      <Column md={6} xs={12}>
         <AlignLeft>
           <p>Ankkuri is based on two ideas:</p>
           <ul>
@@ -54,7 +54,7 @@ export default () => (
           </p>
         </AlignLeft>
       </Column>
-      <Column md={6}>
+      <Column md={6} xs={12}>
         <AlignLeft>
           <p>
             Account linking to the Ankkuri Alexa Skill allows for the routine to
