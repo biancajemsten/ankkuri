@@ -20,7 +20,6 @@ export default () => (
       Anyone can use Ankkuri, you just need an Amazon account and access to
       Alexa (through the app or an Alexa enabled device).
     </p>
-    <br></br>
     <h5>How does it work?</h5>
     <p>
       After answering a questionnaire based on personal behaviours a custom
