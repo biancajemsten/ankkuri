@@ -3,16 +3,25 @@ import rem from "../../../styles/utils/rem";
 
 export const Wrapper = styled.div`
   padding: ${({ theme }) =>
-    `${rem(theme.spacing.m1)} ${rem(theme.spacing.m2)}`};
+    `${rem(theme.spacing.s1)} ${rem(theme.spacing.xs2)}`};
   border-radius: ${({ theme }) => rem(theme.spacing.s1)};
   margin-right: ${({ theme }) => rem(theme.spacing.s3)};
-  min-width: 232px;
+  min-width: 132px;
   box-sizing: border-box;
 
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 
   background-color: ${({ theme }) => theme.colors.white};
 
+  @media (min-width: 879px) {
+    min-width: 232px;
+    padding: ${({ theme }) =>
+      `${rem(theme.spacing.m1)} ${rem(theme.spacing.m2)}`};
+    }
+
+    /* @media (min-width: 879px) {
+      padding: 0 ${({ theme }) => rem(theme.spacing.l3)} 10px;
+    } */
   h5 {
     font-family: ${({ theme }) => theme.text.bodyFont};
     font-weight: 400;

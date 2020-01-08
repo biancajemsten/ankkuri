@@ -53,12 +53,15 @@ export const ProfileContainer = styled.div`
 
   > h5 {
     padding: 0 ${({ theme }) => rem(theme.spacing.s3)};
+    text-align: center;
     letter-spacing: 1px;
     @media (min-width: 660px) {
       padding: 0 ${({ theme }) => rem(theme.spacing.m3)};
+      text-align: center;
     }
 
     @media (min-width: 879px) {
+      text-align: left;
       padding: 0 ${({ theme }) => rem(theme.spacing.l3)};
     }
   }
@@ -88,14 +91,23 @@ export const ProfileContainer = styled.div`
 `;
 
 export const GoalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: ${({ theme }) =>
-    `${rem(theme.spacing.l1)} ${rem(theme.spacing.s3)}`};
-
+    `${rem(theme.spacing.s1)} ${rem(theme.spacing.s3)}`};
+  > h5 {
+    text-align: center;
+  }
   @media (min-width: 660px) {
     padding: 0 ${({ theme }) => rem(theme.spacing.m3)};
   }
 
   @media (min-width: 879px) {
+    > h5 {
+      text-align: left;
+    }
+    align-items: flex-start;
     padding: 0 ${({ theme }) => rem(theme.spacing.l3)};
   }
 `;
