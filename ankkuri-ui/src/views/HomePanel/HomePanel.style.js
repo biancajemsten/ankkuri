@@ -12,8 +12,7 @@ const HomePanelWrapper = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  perspective: 1px;
-  perspective-origin: 0 0;
+
   top: 0;
   z-index: -1;
   padding-top: 100px;
@@ -25,20 +24,33 @@ const HomePanelWrapper = styled.div`
     left: 0;
     right: 0;
     width: 100%;
-    height: 200%;
+    height: 100%;
     background-image: url(${Waves});
     background-size: cover;
     background-position: 0 90%;
     background-repeat: no-repeat;
     transform: rotate(180deg) scaleX(-1);
+    z-index: -1;
   }
 
   ${WaveContainer} {
-    transform-origin: 0 0;
-    transform: translateZ(-0.5px) scale(1.5);
-
     p {
       height: 100%;
+    }
+  }
+
+  @media (min-width: ${breakpoint.medium}px) {
+    perspective: 1px;
+    perspective-origin: 0 0;
+
+    &:before {
+      height: 200%;
+    }
+
+    ${WaveContainer} {
+      transform-origin: 0 0;
+
+      transform: translateZ(-0.5px) scale(1.5);
     }
   }
 `;
@@ -69,7 +81,7 @@ export const MarketingContainer = styled.div`
         line-height: 1.8;
         &.align-left {
           text-align: left;
-          margin-top: ${({theme}) => rem(theme.spacing.m3)};
+          margin-top: ${({ theme }) => rem(theme.spacing.m3)};
         }
       }
       blockquote {

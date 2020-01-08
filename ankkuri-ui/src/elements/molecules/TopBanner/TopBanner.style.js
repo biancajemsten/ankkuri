@@ -5,10 +5,9 @@ import styled from "styled-components";
 // Utils
 import rem from "../../../styles/utils/rem";
 import { breakpoint } from "../../../styles/utils/mediaQuery";
-import colors from '../../../styles/colors';
+import colors from "../../../styles/colors";
 
 const Wrapper = styled.div`
-  height: 100vh;
   padding: ${({ theme }) => rem(theme.spacing.s3)};
   box-sizing: border-box;
 
@@ -47,7 +46,7 @@ const Wrapper = styled.div`
     h1 {
       font-size: 50px;
       span {
-        box-shadow: inset 0px -20px ${({theme}) => theme.colors.accent};
+        box-shadow: inset 0px -20px ${({ theme }) => theme.colors.accent};
       }
     }
 
@@ -57,6 +56,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: ${breakpoint.medium}px) {
+    height: 100vh;
     padding: ${({ theme }) =>
       `${rem(theme.spacing.l1)} ${rem(theme.spacing.l2)}`};
 
