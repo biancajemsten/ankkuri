@@ -30,4 +30,17 @@ export const ContentContainer = styled.div`
       margin: ${({ theme }) => `0 ${rem(theme.spacing.s1)}`};
     }
   }
+
+  @media (max-width: 660px) {
+    width: 80vw;
+    margin-top: 20%;
+    padding-left: 5px;
+    padding-right: 5px;
+    h1{
+      font-size: 30px;
+    }
+    p{
+      width: 100%
+    }
+  }
 `;
