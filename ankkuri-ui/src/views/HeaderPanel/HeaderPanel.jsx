@@ -16,11 +16,10 @@ export default () => {
       <img className="logo" src={Logo} alt="ankkuri" />
     </NavLink>
     <MenuButton onClick={() => {
-      console.log('clicking', !isMenuOpen);
       setIsMenuOpen(!isMenuOpen)}}>
       <img src={BurgerIcon} alt="menu"/>
     </MenuButton>
-    <MainNav isOpen={isMenuOpen} />
+    <MainNav isOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
   </HeaderWrapper>
 )
   }
