@@ -3,7 +3,7 @@ import rem from "../../../styles/utils/rem";
 
 export const Wrapper = styled.div`
   padding: ${({ theme }) =>
-    `${rem(theme.spacing.m1)} ${rem(theme.spacing.m3)}`};
+    `${rem(theme.spacing.s3)} ${rem(theme.spacing.s2)}`};
   border-radius: ${({ theme }) => rem(theme.spacing.s1)};
   display: inline-block;
 
@@ -12,7 +12,12 @@ export const Wrapper = styled.div`
 
   background-color: ${({ theme }) => theme.colors.white};
   text-align: center;
+  width: min-content;
 
+  @media (min-width: 660px) {
+    padding: ${({ theme }) =>
+      `${rem(theme.spacing.m1)} ${rem(theme.spacing.m3)}`};
+  }
   p.maxDays {
     color: ${({ theme }) => theme.colors.secondaryAccent};
   }
