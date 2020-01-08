@@ -45,13 +45,16 @@ const Wrapper = styled.div`
   @media (max-width: ${breakpoint.medium - 1}px) {
     h1 {
       font-size: 50px;
+      color: ${({ theme }) => theme.colors.accent};
       span {
-        box-shadow: inset 0px -20px ${({ theme }) => theme.colors.accent};
+        box-shadow: inset 0px -20px ${({ theme }) => theme.colors.primary};
       }
     }
 
     h2 {
+      color: ${({ theme }) => theme.colors.primaryTint};
       font-size: 20px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     }
   }
 
