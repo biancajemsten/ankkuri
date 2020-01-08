@@ -9,7 +9,7 @@ import { Wrapper } from "./TopBanner.style";
 
 const TopBanner = () => (
   <Wrapper>
-    <Heading headingLevel="h1">Wake up with us</Heading>
+    <Heading headingLevel="h1"><span>Wake up</span> with us</Heading>
     <h2 className="h5">
       The app that helps you get up on the right side of bed
     </h2>

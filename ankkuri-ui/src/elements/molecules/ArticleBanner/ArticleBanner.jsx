@@ -10,7 +10,7 @@ export default () => (
   <ArticleBannerWrapper>
     <h3>The Science</h3>
     <Row>
-      <Column md={6}>
+      <Column xs={12} md={6}>
         <div>
           <blockquote>
             "Having a morning routine can increase your energy, productivity and
@@ -31,7 +31,7 @@ export default () => (
           </Cta>
         </div>
       </Column>
-      <Column lg={6}>
+      <Column xs={12} md={6}>
         <img src={img} alt="" />
       </Column>
     </Row>
