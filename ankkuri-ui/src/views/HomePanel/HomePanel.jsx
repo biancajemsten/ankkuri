@@ -32,7 +32,8 @@ export default () => (
             >
               Go to App
             </a>
-
+          </div>
+          <div>
             <blockquote>'No structure. No purpose. No peace.’</blockquote>
             <p>- Benjamin Folley, Medium</p>
 
@@ -50,9 +51,7 @@ export default () => (
         </div>
       </MarketingContainer>
 
-      <Footer>
-        
-      </Footer>
+      <Footer></Footer>
     </WavesContainer>
   </HomePanelWrapper>
 );

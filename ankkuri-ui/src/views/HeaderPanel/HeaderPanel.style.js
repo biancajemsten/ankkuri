@@ -31,6 +31,9 @@ export const HeaderWrapper = styled.header`
     flex-direction: row;
     padding: ${({ theme }) => rem(theme.spacing.s1)};
     height: 86px;
+    .logo {
+      margin-top: 15px;
+    }
   }
 `;
 

@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 // Utils
 import rem from "../../../styles/utils/rem";
+import { breakpoint } from "../../../styles/utils/mediaQuery";
+import colors from "../../../styles/colors";
 
 const Wrapper = styled.div`
-  height: 100vh;
-  padding: ${({ theme }) =>
-    `${rem(theme.spacing.l1)} ${rem(theme.spacing.l2)}`};
+  padding: ${({ theme }) => rem(theme.spacing.s3)};
   box-sizing: border-box;
 
   position: relative;
@@ -40,7 +40,32 @@ const Wrapper = styled.div`
     font-family: ${({ theme }) => theme.text.bodyFont};
     font-weight: 300;
     line-height: 1.5;
-    max-width: 30%;
+  }
+
+  @media (max-width: ${breakpoint.medium - 1}px) {
+    h1 {
+      font-size: 50px;
+      color: ${({ theme }) => theme.colors.accent};
+      span {
+        box-shadow: inset 0px -20px ${({ theme }) => theme.colors.primary};
+      }
+    }
+
+    h2 {
+      color: ${({ theme }) => theme.colors.primaryTint};
+      font-size: 20px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @media (min-width: ${breakpoint.medium}px) {
+    height: 100vh;
+    padding: ${({ theme }) =>
+      `${rem(theme.spacing.l1)} ${rem(theme.spacing.l2)}`};
+
+    h2 {
+      max-width: 30%;
+    }
   }
 `;
 

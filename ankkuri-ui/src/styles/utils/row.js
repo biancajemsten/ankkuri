@@ -7,5 +7,6 @@ export const row = (gutter = baseGutter) => {
     flex-grow: 1;
     margin-right: -${gutter / 2}px;
     margin-left: -${gutter / 2}px;
+    flex-wrap: wrap;
   `;
 };
