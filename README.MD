@@ -32,6 +32,10 @@ See the webapp hosted on Netlify here: [Ankkuri.life ](https://www.ankkuri.life/
 
 <img src="https://i.imgur.com/cbpUDvv.png" width="600"/>
 
+#### Repository set up
+
+This repository contains both the backend and the frontend for the apps. `ankkuri-ui` has the `React` frontend whereas `ankkuri-service` contains the AWS service.
+
 #### Designs
 
 The designs were made to appeal to a young audience as the mission of the challenge was to prevent mental health issues for young professionals and teenagers.
