@@ -30,7 +30,7 @@ See the webapp hosted on Netlify here: [Ankkuri.life ](https://www.ankkuri.life/
 
 </br>
 
-<img src="https://i.imgur.com/cbpUDvv.png" width="600"/>
+<img src="https://i.imgur.com/cbpUDvv.png" width="800"/>
 
 #### Repository set up
 
@@ -48,8 +48,8 @@ We therefore decided to go with a fun colour scheme and happy lighthearted photo
 
 #### Workflow
 
-The team brainstormed ideas for the application and the voice journey together and then divided up all work to be as time efficient as possible as we only had about 36 hours to build the application.
-Two developers focused on the frontend. They divided up components into atoms and molecules before they build out all the pages.
+The team brainstormed ideas for the application and the voice journey together and then divided up the work into different areas. We did this to be as time efficient as possible as we only had about 36 hours to build the application.
+Two developers focused on the frontend. They divided up components into atoms and molecules before they build out all the pages. They were also responsible for the designs.
 One developer specialised on integrating the database with the API and the lambda functions for the voice application. Additionally, they also integrated AWS Cognito with both the voice app and the web app. Finally, one developer tested and wrote out the voice journey in `Node.js` using `Lambda` to power the Alexa skill.
 
 #### Disclaimers
