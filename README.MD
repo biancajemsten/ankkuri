@@ -2,7 +2,7 @@
 
 <img  align="right" inline src="https://i.imgur.com/tgU6Tu2.png" width="50">
 
-### A combined web and voice application
+### A combined web and voice mental health application
 
 ##### by Ashleigh Hyslop, Bianca Jemsten, Catherine Oxley and Isabel Lewis
 
@@ -11,6 +11,7 @@
 #### Overview
 
 Ankkuri was built during the [Junction Hackathon](https://www.hackjunction.com/) in Helsinki 2019. It's a combined web and voice application that generates a personalised morning routine for users. The user fills out a profile about themselves in the voice app which then powers the voice journey which can be accessed through an Alexa.
+The name Ankkuri comes from the Finish word for anchor. We chose this because anchoring is a method that uses good habits to reinforce positivity in your day and lower stress and anxiety.
 
 See the webapp hosted on Netlify here: [Ankkuri.life ](https://www.ankkuri.life/#/).
 
@@ -50,7 +51,7 @@ We therefore decided to go with a fun colour scheme and happy lighthearted photo
 
 The team brainstormed ideas for the application and the voice journey together and then divided up the work into different areas. We did this to be as time efficient as possible as we only had about 36 hours to build the application.
 Two developers focused on the frontend. They divided up components into atoms and molecules before they build out all the pages. They were also responsible for the designs.
-One developer specialised on integrating the database with the API and the lambda functions for the voice application. Additionally, they also integrated AWS Cognito with both the voice app and the web app. Finally, one developer tested and wrote out the voice journey in `Node.js` using `Lambda` to power the Alexa skill.
+One developer specialised on integrating the database with the API and the lambda functions for the voice application. Additionally, they also integrated `AWS Cognito` with both the voice app and the web app. Finally, one developer tested and wrote out the voice journey in `Node.js` using `Lambda` to power the `Alexa skill`.
 
 #### Disclaimers
 
